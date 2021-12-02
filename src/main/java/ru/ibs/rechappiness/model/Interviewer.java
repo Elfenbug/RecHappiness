@@ -27,7 +27,7 @@ public class Interviewer {
     @Column(name="email")
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "interviewer")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "interviewer")
     private List<Participant> participants;
 
 }

@@ -46,7 +46,7 @@ public class CustomerController {
     }
 
     @PostMapping("/customer/delete/{id}")
-    public String deleteCar(@PathVariable Long id) {
+    public String deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
         return "customer with ID = " + id + " was deleted";
     }

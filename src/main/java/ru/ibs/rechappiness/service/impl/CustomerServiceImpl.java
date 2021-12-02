@@ -20,25 +20,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getAllCustomers() {
-        log.info("IN CustomerServiceImpl getAll");
+        log.info("IN CustomerServiceImpl getAllCustomers");
         return customerRepository.findAll();
     }
 
     @Override
     public Customer getCustomer(Long id) {
-        log.info("IN CustomerServiceImpl getById {}", id);
+        log.info("IN CustomerServiceImpl getCustomer {}", id);
         return customerRepository.findById(id).orElse(null);
     }
 
     @Override
     public void saveCustomer(Customer customer) {
-        log.info("IN CustomerServiceImpl save {}", customer);
+        log.info("IN CustomerServiceImpl saveCustomer {}", customer);
         customerRepository.save(customer);
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        log.info("IN CustomerServiceImpl delete {}", id);
+        log.info("IN CustomerServiceImpl deleteCustomer {}", id);
         customerRepository.deleteById(id);
     }
 

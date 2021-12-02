@@ -1,12 +1,16 @@
 package ru.ibs.rechappiness.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "functional_directions")
 public class FunctionalDirection {
 
@@ -15,7 +19,7 @@ public class FunctionalDirection {
     @Column(name="id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "functionalDirection")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "functionalDirection")
     private List<Project> projects;
 
     @Column(name = "name")

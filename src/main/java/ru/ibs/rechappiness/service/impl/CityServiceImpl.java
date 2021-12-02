@@ -22,31 +22,31 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<City> getAllCities() {
-        log.info("IN CityServiceImpl getAll");
+        log.info("IN CityServiceImpl getAllCities");
         return cityRepository.findAll();
     }
 
     @Override
     public City getCity(Long id) {
-        log.info("IN CityServiceImpl getById {}", id);
+        log.info("IN CityServiceImpl getCity {}", id);
         return cityRepository.findById(id).orElse(null);
     }
 
     @Override
     public void saveCity(City city) {
-        log.info("IN CityServiceImpl save {}", city);
+        log.info("IN CityServiceImpl saveCity {}", city);
         cityRepository.save(city);
     }
 
     @Override
     public void deleteCity(Long id) {
-        log.info("IN CityServiceImpl delete {}", id);
+        log.info("IN CityServiceImpl deleteCity {}", id);
         cityRepository.deleteById(id);
     }
 
     @Override
     public void updateCity(City city, Long id) {
-        log.info("IN CustomerServiceImpl updateCustomer {}", city);
+        log.info("IN CustomerServiceImpl updateCity {}", city);
         if (cityRepository.findById(id).orElse(null) != null) {
             city.setId(id);
             cityRepository.save(city);
