@@ -1,9 +1,8 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.entity.Project;
+import ru.ibs.rechappiness.model.Project;
 import ru.ibs.rechappiness.repository.ProjectRepository;
 import ru.ibs.rechappiness.service.ProjectService;
 
@@ -19,23 +18,34 @@ public class ProjectServiceImpl implements ProjectService {
         this.projectRepository = projectRepository;
     }
 
+
     @Override
-    public Project getById(Long id) {
-        return null;
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 
     @Override
-    public void save(Project customer) {
+    public Project getById(Long id) {
+        return projectRepository.findById(id).orElse(null);
+    }
 
+    @Override
+    public void save(Project project) {
+        projectRepository.save(project);
     }
 
     @Override
     public void delete(Long id) {
-
+        projectRepository.deleteById(id);
     }
 
     @Override
-    public List<Project> getAll() {
-        return null;
+    public void updateProject(Project project, Long id) {
+        if (projectRepository.findById(id).orElse(null) != null) {
+            project.setId(id);
+            projectRepository.save(project);
+        }
     }
+
+
 }

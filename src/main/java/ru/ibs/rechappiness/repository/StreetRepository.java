@@ -2,7 +2,7 @@ package ru.ibs.rechappiness.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.ibs.rechappiness.entity.Street;
+import ru.ibs.rechappiness.model.Street;
 
 public interface StreetRepository extends JpaRepository<Street, Long> {
 }
