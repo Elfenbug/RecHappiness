@@ -1,6 +1,5 @@
 package ru.ibs.rechappiness.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Customer;
@@ -8,7 +7,6 @@ import ru.ibs.rechappiness.service.CustomerService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/registers")
 public class CustomerController {

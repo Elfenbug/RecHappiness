@@ -10,7 +10,6 @@ import ru.ibs.rechappiness.service.InterviewerService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/registers")
 public class InterviewerController {

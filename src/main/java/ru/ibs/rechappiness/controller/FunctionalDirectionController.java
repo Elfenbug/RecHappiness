@@ -10,7 +10,6 @@ import ru.ibs.rechappiness.service.FunctionalDirectionService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/registers")
 public class FunctionalDirectionController {
