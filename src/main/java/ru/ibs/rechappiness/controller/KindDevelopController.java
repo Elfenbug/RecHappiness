@@ -18,39 +18,39 @@ public class KindDevelopController {
         this.kindDevelopService = kindDevelopService;
     }
 
-    @GetMapping("/customer/read")
+    @GetMapping("/kinddevelop/read")
     public List<KindDevelop> showAllKindDevelops() {
         return kindDevelopService.getAllKindDevelops();
     }
 
-    @GetMapping("/customer/read/{id}")
+    @GetMapping("/kinddevelop/read/{id}")
     public KindDevelop getKindDevelop(@PathVariable Long id) {
         return kindDevelopService.getKindDevelop(id);
     }
 
-    @PostMapping("/customer/create")
+    @PostMapping("/kinddevelop/create")
     public KindDevelop addNewKindDevelop(@RequestBody KindDevelop kindDevelop) {
         kindDevelopService.saveKindDevelop(kindDevelop);
         return kindDevelop;
     }
 
-    @PostMapping("/customer/update/{id}")
+    @PostMapping("/kinddevelop/update/{id}")
     public void updateKindDevelop(@RequestBody KindDevelop kindDevelop, @PathVariable Long id) {
         kindDevelopService.updateKindDevelop(kindDevelop, id);
     }
 
-    @PostMapping("/customer/update/")
+    @PostMapping("/kinddevelop/update/")
     public Customer updateKindDevelop() {
         throw new NoSuchElementException("Please use valid id");
     }
 
-    @PostMapping("/customer/delete/{id}")
+    @PostMapping("/kinddevelop/delete/{id}")
     public String deleteKindDevelop(@PathVariable Long id) {
         kindDevelopService.deleteKindDevelop(id);
         return "kindDevelop with ID = " + id + " was deleted";
     }
 
-    @PostMapping("/customer/delete")
+    @PostMapping("/kinddevelop/delete")
     public String noIdToDelete() {
         throw new NoSuchElementException("Please, select ID to delete");
     }

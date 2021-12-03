@@ -13,11 +13,11 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class KindDeveloperServiceImpl implements KindDevelopService {
+public class KindDevelopServiceImpl implements KindDevelopService {
 
     private final KindDevelopRepository kindDevelopRepository;
 
-    public KindDeveloperServiceImpl(KindDevelopRepository kindDevelopRepository) {
+    public KindDevelopServiceImpl(KindDevelopRepository kindDevelopRepository) {
         this.kindDevelopRepository = kindDevelopRepository;
     }
 
