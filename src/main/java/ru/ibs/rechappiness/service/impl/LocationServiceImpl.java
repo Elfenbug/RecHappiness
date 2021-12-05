@@ -21,7 +21,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<Location> getAllLocations() {
-        log.info("IN CustomerServiceImpl getAllCustomers");
+        log.info("IN LocationServiceImpl getAllLocations");
         return locationRepository.findAll();
     }
 

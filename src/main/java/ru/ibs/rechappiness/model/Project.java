@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,14 +29,14 @@ public class Project {
     @Column(name = "stakeholders")
     private int stakeholder;
 
-    @Column(name = "descriprion")
-    private String descriprion;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "count_developers")
     private int countDeveloper;
 
-    @Column(name = "count_analitics")
-    private int countAnalitic;
+    @Column(name = "count_analytics")
+    private int countAnalytic;
 
     @Column(name = "testers")
     private boolean tester;
@@ -52,45 +53,46 @@ public class Project {
     @Column(name = "check_documentation")
     private boolean checkDocumentation;
 
-    @Column(name = "gost")
-    private boolean gost;
+//    @Column(name = "gost")
+//    private boolean gost;
 
-    @Column(name="projectTask")
+    @Column(name="project_task")
     private String projectTask;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "functional_direction_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "functional_directions_id")
     private FunctionalDirection functionalDirection;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "subject_areas_id")
     private SubjectArea subjectArea;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "project_stage_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "project_stages_id")
     private ProjectStage projectStage;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "project_type_id")
     private ProjectType projectType;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "methodology_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "methodologies_id")
     private Methodology methodology;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "kind_develop_id")
     private KindDevelop kindDevelop;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @JsonIgnore
     private List<Location> locations;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "overtime_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "overtimes_id")
     Overtime overtime;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -100,7 +102,7 @@ public class Project {
     private List<Technology> technologies;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="users_id")
     private Users user;
 
 

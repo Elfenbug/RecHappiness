@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class Street {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "street")
+    @JsonIgnore
     private List<Location> locations;
 }

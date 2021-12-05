@@ -1,0 +1,514 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="1.0.0" author="marsel.kashapov">
+        <createTable tableName="customers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.1" author="marsel.kashapov">
+        <createTable tableName="project_types">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.2" author="marsel.kashapov">
+        <createTable tableName="kind_develops">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.3" author="marsel.kashapov">
+        <createTable tableName="locations">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="index" type="VARCHAR(100)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="house_number" type="VARCHAR(20)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="flat" type="VARCHAR(20)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="countries_id" type="BIGINT">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="cities_id" type="BIGINT">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="streets_id" type="BIGINT">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="projects_id" type="BIGINT">
+                <constraints nullable="true" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.4" author="marsel.kashapov">
+        <createTable tableName="countries">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.5" author="marsel.kashapov">
+        <createTable tableName="cities">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.6" author="marsel.kashapov">
+        <createTable tableName="streets">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.7" author="marsel.kashapov">
+        <createTable tableName="technologies">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.8" author="marsel.kashapov">
+        <createTable tableName="functional_directions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.9" author="marsel.kashapov">
+        <createTable tableName="project_stages">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.10" author="marsel.kashapov">
+        <createTable tableName="subject_areas">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.11" author="marsel.kashapov">
+        <createTable tableName="methodologies">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.12" author="marsel.kashapov">
+        <createTable tableName="overtimes">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.13" author="marsel.kashapov">
+        <createTable tableName="participants">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="count_interview" type="INT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="interviewers_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.14" author="marsel.kashapov">
+        <createTable tableName="interviewers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.15" author="marsel.kashapov">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="1.0.16" author="marsel.kashapov">
+        <createTable tableName="projects">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="deadline" type="DATETIME">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="stakeholders" type="INT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="description" type="TEXT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="count_developers" type="INT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="count_analytics" type="INT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="testers" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="technical_writers" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="check_ready" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="team_date" type="DATETIME">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="project_task" type="TEXT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="project_type_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="kind_develop_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="overtime_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="users_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="check_documentation" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="functional_directions_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="methodologies_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="project_stages_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="subject_areas_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="overtimes_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.17" author="marsel.kashapov">
+        <createTable tableName="projects_technologies">
+            <column name="projects_id" type="BIGINT">
+            </column>
+
+            <column name="technologies_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.18" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_customers"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customers"/>
+    </changeSet>
+
+    <changeSet id="1.0.19" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="functional_directions_id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_functional_directions"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="functional_directions"/>
+    </changeSet>
+
+    <changeSet id="1.0.20" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_project_stages"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_stages"/>
+    </changeSet>
+
+    <changeSet id="1.0.21" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="subject_areas_id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_subject_areas"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subject_areas"/>
+    </changeSet>
+
+    <changeSet id="1.0.22" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_project_types"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_types"/>
+    </changeSet>
+
+    <changeSet id="1.0.23" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_kind_develops"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kind_develops"/>
+    </changeSet>
+
+    <changeSet id="1.0.24" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="overtimes_id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_overtimes"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="overtimes"/>
+    </changeSet>
+
+    <changeSet id="1.0.25" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="users_id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_users"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="1.0.26" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="countries_id"
+                                 baseTableName="locations"
+                                 constraintName="fk_locations_countries"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="countries"/>
+    </changeSet>
+
+    <changeSet id="1.0.27" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="cities_id"
+                                 baseTableName="locations"
+                                 constraintName="fk_locations_cities"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cities"/>
+    </changeSet>
+
+    <changeSet id="1.0.28" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="streets_id"
+                                 baseTableName="locations"
+                                 constraintName="fk_locations_streets"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="streets"/>
+    </changeSet>
+
+    <changeSet id="1.0.29" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="interviewers_id"
+                                 baseTableName="participants"
+                                 constraintName="fk_participants_interviewers"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="interviewers"/>
+    </changeSet>
+
+
+    <changeSet id="1.0.30" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="projects_id"
+                                 baseTableName="locations"
+                                 constraintName="fk_locations_projects"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="projects"/>
+    </changeSet>
+
+    <changeSet id="1.0.31" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="projects_id"
+                                 baseTableName="projects_technologies"
+                                 constraintName="fk_projects_technologies"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="projects"/>
+    </changeSet>
+
+    <changeSet id="1.0.32" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="technologies_id"
+                                 baseTableName="projects_technologies"
+                                 constraintName="fk_technologies_projects"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="technologies"/>
+    </changeSet>
+
+    <changeSet id="1.0.33" author="marsel.kashapov">
+        <addForeignKeyConstraint baseColumnNames="methodologies_id"
+                                 baseTableName="projects"
+                                 constraintName="fk_projects_methodologies"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="methodologies"/>
+    </changeSet>
+</databaseChangeLog>

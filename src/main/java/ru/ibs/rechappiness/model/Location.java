@@ -23,16 +23,16 @@ public class Location {
     @Column(name = "index")
     private String index;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "country_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "countries_id")
     private Country country;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name="city_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name="cities_id")
     private City city;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "street_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "streets_id")
     private Street street;
 
     @Column(name="house_number")
@@ -42,7 +42,7 @@ public class Location {
     private String flat;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "projects_id")
     private Project project;
 
 }

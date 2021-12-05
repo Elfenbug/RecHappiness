@@ -21,7 +21,7 @@ public class CityController {
     }
 
     @GetMapping("/city/read")
-    public List<City> showAllCustomers() {
+    public List<City> showAllCities() {
         return cityService.getAllCities();
     }
 
@@ -31,7 +31,7 @@ public class CityController {
     }
 
     @PostMapping("/city/create")
-    public City addNewCustomer(@RequestBody City city) {
+    public City addNewCity(@RequestBody City city) {
         cityService.saveCity(city);
         return city;
     }

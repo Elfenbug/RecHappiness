@@ -1,7 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.ProjectDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
+import ru.ibs.rechappiness.mapper.ProjectMapper;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Project;
 import ru.ibs.rechappiness.service.ProjectService;
@@ -20,6 +22,7 @@ public class ProjectController {
 
     @GetMapping("/project/read")
     public List<Project> showAllProjects() {
+        //return  ProjectMapper.INSTANCE.toListDto(projectService.getAllProjects());
         return projectService.getAllProjects();
     }
 

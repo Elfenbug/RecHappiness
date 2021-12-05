@@ -1,6 +1,8 @@
 package ru.ibs.rechappiness.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ public class Customer {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    @JsonIgnore
     private List<Project> project;
 
 

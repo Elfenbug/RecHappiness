@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Interviewer {
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "interviewer")
+    @JsonIgnore
     private List<Participant> participants;
 
 }

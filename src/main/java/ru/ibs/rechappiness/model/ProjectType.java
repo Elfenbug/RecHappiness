@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,6 @@ public class ProjectType {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "projectType")
+    @JsonIgnore
     private List<Project> projects;
 }

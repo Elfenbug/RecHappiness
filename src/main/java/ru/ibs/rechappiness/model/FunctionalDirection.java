@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class FunctionalDirection {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "functionalDirection")
+    @JsonIgnore
     private List<Project> projects;
 
     @Column(name = "name")
