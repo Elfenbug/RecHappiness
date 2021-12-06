@@ -2,6 +2,7 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.StreetDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Street;
@@ -25,8 +26,11 @@ public class StreetController {
     }
 
     @GetMapping("/streetservice/read/{id}")
-    public Street getStreet(@PathVariable Long id) {
-        return streetService.getStreet(id);
+//    public Street getStreet(@PathVariable Long id) {
+//        return streetService.getStreet(id);
+//    }
+    public StreetDto getById(@PathVariable Long id) {
+        return StreetDto.toDto(streetService.getStreet(id));
     }
 
     @PostMapping("/streetservice/create")

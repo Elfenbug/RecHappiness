@@ -1,10 +1,7 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.ibs.rechappiness.dto.LocationDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.mapper.LocationMapper;
-import ru.ibs.rechappiness.mapper.ProjectMapper;
 import ru.ibs.rechappiness.model.Location;
 import ru.ibs.rechappiness.service.LocationService;
 
