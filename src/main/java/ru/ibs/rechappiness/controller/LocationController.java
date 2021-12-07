@@ -1,7 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.LocationDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
+import ru.ibs.rechappiness.mapper.LocationMapper;
 import ru.ibs.rechappiness.model.Location;
 import ru.ibs.rechappiness.service.LocationService;
 
@@ -18,15 +20,13 @@ public class LocationController {
     }
 
     @GetMapping("/location/read")
-    public List<Location> showAllLocations() {
-       // return  LocationMapper.INSTANCE.toListDto(locationService.getAllLocations());
-        return locationService.getAllLocations();
+    public List<LocationDto> showAllLocations() {
+        return LocationMapper.INSTANCE.map(locationService.getAllLocations());
     }
 
     @GetMapping("/location/read/{id}")
-    public Location getLocation(@PathVariable Long id) {
-        return locationService.getLocation(id);
-        //return  LocationMapper.INSTANCE.toDto(locationService.getLocation(id));
+    public LocationDto getLocation(@PathVariable Long id) {
+        return LocationMapper.INSTANCE.toDto(locationService.getLocation(id));
     }
 
     @PostMapping("/location/create")

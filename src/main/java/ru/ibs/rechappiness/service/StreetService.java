@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.service;
 
+import ru.ibs.rechappiness.dto.StreetDto;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Street;
 

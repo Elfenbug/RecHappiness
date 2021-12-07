@@ -1,7 +1,10 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.CustomerDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
+import ru.ibs.rechappiness.mapper.CustomerMapper;
+import ru.ibs.rechappiness.mapper.LocationMapper;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.service.CustomerService;
 
@@ -18,13 +21,13 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/read")
-    public List<Customer> showAllCustomers() {
-        return customerService.getAllCustomers();
+    public List<CustomerDto> showAllCustomers() {
+        return CustomerMapper.INSTANCE.map(customerService.getAllCustomers());
     }
 
     @GetMapping("/customer/read/{id}")
-    public Customer getCustomer(@PathVariable Long id) {
-        return customerService.getCustomer(id);
+    public CustomerDto getCustomer(@PathVariable Long id) {
+        return CustomerMapper.INSTANCE.toDto(customerService.getCustomer(id));
     }
 
     @PostMapping("/customer/create")
