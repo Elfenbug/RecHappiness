@@ -22,12 +22,12 @@ public class ProjectController {
 
     @GetMapping("/project/read")
     public List<ProjectDto> showAllProjects() {
-        return ProjectMapper.INSTANCE.map(projectService.getAllProjects());
+        return projectService.getAllProjects();
     }
 
     @GetMapping("/project/read/{id}")
     public ProjectDto getProject(@PathVariable Long id) {
-        return ProjectMapper.INSTANCE.toDto(projectService.getProject(id));
+        return ProjectMapper.INSTANCE.fromProject(projectService.getProject(id));
     }
 
     @PostMapping("/project/create")

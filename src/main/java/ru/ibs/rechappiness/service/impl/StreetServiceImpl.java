@@ -20,6 +20,7 @@ public class StreetServiceImpl implements StreetService {
         this.streetRepository = streetRepository;
     }
 
+
     @Override
     public List<Street> getAllStreets() {
         log.info("IN StreetServiceImpl getAllStreets");

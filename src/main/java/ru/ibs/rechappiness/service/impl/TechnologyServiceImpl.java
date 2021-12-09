@@ -2,10 +2,13 @@ package ru.ibs.rechappiness.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.ibs.rechappiness.dto.TechnologyDto;
+import ru.ibs.rechappiness.mapper.TechnologyMapper;
 import ru.ibs.rechappiness.model.Technology;
 import ru.ibs.rechappiness.repository.TechnologyRepository;
 import ru.ibs.rechappiness.service.TechnologyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,9 +22,15 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Technology> getAllTechnologies() {
+    public List<TechnologyDto> getAllTechnologies() {
         log.info("IN TechnologyServiceImpl getAllTechnologies");
-        return technologyRepository.findAll();
+        List<TechnologyDto> technologyDtoList = new ArrayList<>();
+        List<Technology> technologyList = technologyRepository.findAll();
+        for (Technology technologies : technologyList) {
+            technologyDtoList.add(TechnologyMapper.INSTANCE.fromTechnology(technologies));
+        }
+        return technologyDtoList;
+        //       return technologyRepository.findAll();
     }
 
     @Override

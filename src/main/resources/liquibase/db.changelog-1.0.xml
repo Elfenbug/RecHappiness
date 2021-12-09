@@ -296,23 +296,23 @@
             </column>
 
             <column name="customer_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="project_type_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="kind_develop_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="overtime_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="users_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="check_documentation" type="BOOLEAN">
@@ -320,23 +320,23 @@
             </column>
 
             <column name="functional_directions_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="methodologies_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="project_stages_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="subject_areas_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="overtimes_id" type="BIGINT">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
         </createTable>
     </changeSet>

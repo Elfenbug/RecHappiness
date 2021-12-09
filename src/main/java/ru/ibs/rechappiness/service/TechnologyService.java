@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.service;
 
+import ru.ibs.rechappiness.dto.TechnologyDto;
 import ru.ibs.rechappiness.model.Technology;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface TechnologyService {
 
     void deleteTechnology(Long id);
 
-    List<Technology> getAllTechnologies();
+    List<TechnologyDto> getAllTechnologies();
 
     void updateTechnology(Technology technology, Long id);
 }

@@ -2,6 +2,7 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.TechnologyDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Technology;
@@ -19,7 +20,7 @@ public class TechnologyController {
         this.technologyService = technologyService;
     }
     @GetMapping("/technology/read")
-    public List<Technology> showAllTechnologies() {
+    public List<TechnologyDto> showAllTechnologies() {
         return technologyService.getAllTechnologies();
     }
 

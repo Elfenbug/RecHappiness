@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ibs.rechappiness.dto.StreetDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Street {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "street")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "street")
     @JsonIgnore
     private List<Location> locations;
 }

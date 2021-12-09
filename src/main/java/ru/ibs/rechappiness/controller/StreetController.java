@@ -35,23 +35,23 @@ public class StreetController {
         return street;
     }
 
-    @PostMapping("/streetservice/update/{id}")
+    @PostMapping("/street/update/{id}")
     public void updateStreet(@RequestBody Street street, @PathVariable Long id) {
         streetService.updateStreet(street, id);
     }
 
-    @PostMapping("/streetservice/update/")
+    @PostMapping("/street/update/")
     public Street updateStreet() {
         throw new NoSuchElementException("Please use valid id");
     }
 
-    @PostMapping("/streetservice/delete/{id}")
+    @PostMapping("/street/delete/{id}")
     public String deleteStreet(@PathVariable Long id) {
         streetService.deleteStreet(id);
         return "Street with ID = " + id + " was deleted";
     }
 
-    @PostMapping("/streetservice/delete")
+    @PostMapping("/street/delete")
     public String noIdToDelete() {
         throw new NoSuchElementException("Please, select ID to delete");
     }

@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.service;
 
+import ru.ibs.rechappiness.dto.ProjectDto;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Project;
 
@@ -13,7 +14,7 @@ public interface ProjectService {
 
     void deleteProject(Long id);
 
-    List<Project> getAllProjects();
+    List<ProjectDto> getAllProjects();
 
     void updateProject(Project project, Long id);
 

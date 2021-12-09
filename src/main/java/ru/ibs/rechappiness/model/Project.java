@@ -1,18 +1,22 @@
 package ru.ibs.rechappiness.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "projects")
 public class Project {
 
@@ -89,17 +93,18 @@ public class Project {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
     @JsonIgnore
-    private List<Location> locations;
+    private Set<Location> locations;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "overtimes_id")
     Overtime overtime;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "project_has_tecchnologies"
+    @JoinTable(name = "projects_technologies"
             , joinColumns = @JoinColumn(name = "projects_id")
             , inverseJoinColumns = @JoinColumn(name = "technologies_id"))
-    private List<Technology> technologies;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<Technology> technologies;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name="users_id")
@@ -115,4 +120,16 @@ public class Project {
 //            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
 //    private List<Role> roles;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Project project = (Project) o;
+        return id != null && Objects.equals(id, project.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
