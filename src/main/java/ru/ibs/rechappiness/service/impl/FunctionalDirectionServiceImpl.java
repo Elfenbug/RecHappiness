@@ -1,14 +1,14 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.FunctionalDirectionDto;
+import ru.ibs.rechappiness.mapper.FunctionalDirectionMapper;
 import ru.ibs.rechappiness.model.FunctionalDirection;
 import ru.ibs.rechappiness.repository.FunctionalDirectionRepository;
 import ru.ibs.rechappiness.service.FunctionalDirectionService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,21 +22,26 @@ public class FunctionalDirectionServiceImpl implements FunctionalDirectionServic
     }
 
     @Override
-    public List<FunctionalDirection> getAllFunctionalDirections() {
+    public List<FunctionalDirectionDto> getAllFunctionalDirections() {
         log.info("IN FunctionalDirectionServiceImpl getAllFunctionalDirections");
-        return functionalDirectionRepository.findAll();
+        List<FunctionalDirectionDto> functionalDirectionDtoList = new ArrayList<>();
+        List<FunctionalDirection> functionalDirectionList = functionalDirectionRepository.findAll();
+        for (FunctionalDirection functionalDirections : functionalDirectionList) {
+            functionalDirectionDtoList.add(FunctionalDirectionMapper.INSTANCE.fromFunctionalDirection(functionalDirections));
+        }
+        return functionalDirectionDtoList;
     }
 
     @Override
-    public FunctionalDirection getFunctionalDirection(Long id) {
+    public FunctionalDirectionDto getFunctionalDirection(Long id) {
         log.info("IN FunctionalDirectionServiceImpl getFunctionalDirection {}", id);
-        return functionalDirectionRepository.findById(id).orElse(null);
+        return FunctionalDirectionMapper.INSTANCE.fromFunctionalDirection(functionalDirectionRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveFunctionalDirection(FunctionalDirection functionalDirection) {
-        log.info("IN FunctionalDirectionServiceImpl saveFunctionalDirection {}", functionalDirection);
-        functionalDirectionRepository.save(functionalDirection);
+    public void saveFunctionalDirection(FunctionalDirectionDto functionalDirectionDto) {
+        log.info("IN FunctionalDirectionServiceImpl saveFunctionalDirection {}", functionalDirectionDto);
+        functionalDirectionRepository.save(FunctionalDirectionMapper.INSTANCE.toFunctionalDirection(functionalDirectionDto));
     }
 
     @Override
@@ -46,11 +51,11 @@ public class FunctionalDirectionServiceImpl implements FunctionalDirectionServic
     }
 
     @Override
-    public void updateFunctionalDirection(FunctionalDirection functionalDirection, Long id) {
-        log.info("IN FunctionalDirectionServiceImpl updateFunctionalDirection {}", functionalDirection);
+    public void updateFunctionalDirection(FunctionalDirectionDto functionalDirectionDto, Long id) {
+        log.info("IN FunctionalDirectionServiceImpl updateFunctionalDirection {}", functionalDirectionDto);
         if (functionalDirectionRepository.findById(id).orElse(null) != null) {
-            functionalDirection.setId(id);
-            functionalDirectionRepository.save(functionalDirection);
+            functionalDirectionDto.setId(id);
+            functionalDirectionRepository.save(FunctionalDirectionMapper.INSTANCE.toFunctionalDirection(functionalDirectionDto));
         }
     }
 }

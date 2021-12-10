@@ -17,5 +17,4 @@ public class LocationDto {
     private StreetDto street;
     private String houseNumber;
     private String flat;
-    private ProjectDto project;
 }

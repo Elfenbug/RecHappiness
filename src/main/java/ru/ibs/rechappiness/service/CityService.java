@@ -1,18 +1,17 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.City;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.CityDto;
 
 import java.util.List;
 
 public interface CityService {
-    City getCity(Long id);
+    CityDto getCity(Long id);
 
-    void saveCity(City city);
+    void saveCity(CityDto city);
 
     void deleteCity(Long id);
 
-    List<City> getAllCities();
+    List<CityDto> getAllCities();
 
-    void updateCity(City city, Long id);
+    void updateCity(CityDto cityDto, Long id);
 }

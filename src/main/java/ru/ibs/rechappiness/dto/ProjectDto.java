@@ -1,16 +1,12 @@
 package ru.ibs.rechappiness.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import ru.ibs.rechappiness.model.*;
 
-import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Set;
 
-//@Data
 @Getter
 @Setter
 @ToString
@@ -20,7 +16,8 @@ import java.util.Set;
 public class ProjectDto {
     private Long id;
     private String name;
-    private Date deadline;
+    private String deadline;
+    //private Date deadline;
     private int stakeholder;
     private String description;
     private int countDeveloper;
@@ -28,12 +25,12 @@ public class ProjectDto {
     private boolean tester;
     private boolean technicalWriter;
     private boolean checkReady;
-    private Date teamDate;
+    private String teamDate;
     private boolean checkDocumentation;
 //    private boolean gost;
     private String projectTask;
 
-    private CustomerDto customer;
+//    private CustomerDto customer;
     private FunctionalDirectionDto functionalDirection;
     private SubjectAreaDto subjectArea;
     private ProjectStageDto projectStage;
@@ -43,18 +40,4 @@ public class ProjectDto {
     private Set<LocationDto> locations;
     private OvertimeDto overtime;
     private Set<TechnologyDto> technologies;
-
-//    public void addLocation(LocationDto locationDto) {
-//        if(locations == null) {
-//            locations = new ArrayList<>();
-//        }
-//        locations.add(locationDto);
-//    }
-//
-//    public void addTechnology(TechnologyDto technologyDto) {
-//        if(technologies == null) {
-//            technologies = new ArrayList<>();
-//        }
-//        technologies.add(technologyDto);
-//    }
 }

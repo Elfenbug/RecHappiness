@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,7 @@ public class Location {
 
     @ManyToOne
     @JoinColumn(name = "projects_id")
+    @JsonIgnore
     private Project project;
 
 }

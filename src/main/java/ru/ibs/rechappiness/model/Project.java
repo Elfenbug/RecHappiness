@@ -1,14 +1,17 @@
 package ru.ibs.rechappiness.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +31,8 @@ public class Project {
     private String name;
 
     @Column(name = "deadline")
-    private Date deadline;
+   // @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDateTime deadline;
 
     @Column(name = "stakeholders")
     private int stakeholder;
@@ -52,7 +56,8 @@ public class Project {
     private boolean checkReady;
 
     @Column(name = "team_date")
-    private Date teamDate;
+   // @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDateTime teamDate;
 
     @Column(name = "check_documentation")
     private boolean checkDocumentation;
@@ -65,6 +70,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -97,7 +103,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "overtimes_id")
-    Overtime overtime;
+    private Overtime overtime;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "projects_technologies"

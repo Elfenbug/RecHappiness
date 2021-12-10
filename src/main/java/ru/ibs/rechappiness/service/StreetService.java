@@ -1,19 +1,17 @@
 package ru.ibs.rechappiness.service;
 
 import ru.ibs.rechappiness.dto.StreetDto;
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.Street;
 
 import java.util.List;
 
 public interface StreetService {
-    Street getStreet(Long id);
+    StreetDto getStreet(Long id);
 
-    void saveStreet(Street street);
+    void saveStreet(StreetDto streetDto);
 
     void deleteStreet(Long id);
 
-    List<Street> getAllStreets();
+    List<StreetDto> getAllStreets();
 
-    void updateStreet(Street street, Long id);
+    void updateStreet(StreetDto streetDto, Long id);
 }

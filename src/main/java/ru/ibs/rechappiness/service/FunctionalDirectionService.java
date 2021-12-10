@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.FunctionalDirection;
+import ru.ibs.rechappiness.dto.FunctionalDirectionDto;
 
 import java.util.List;
 
 public interface FunctionalDirectionService {
 
-    FunctionalDirection getFunctionalDirection(Long id);
+    FunctionalDirectionDto getFunctionalDirection(Long id);
 
-    void saveFunctionalDirection(FunctionalDirection functionalDirection);
+    void saveFunctionalDirection(FunctionalDirectionDto functionalDirectionDto);
 
     void deleteFunctionalDirection(Long id);
 
-    List<FunctionalDirection> getAllFunctionalDirections();
+    List<FunctionalDirectionDto> getAllFunctionalDirections();
 
-    void updateFunctionalDirection(FunctionalDirection functionalDirection, Long id);
+    void updateFunctionalDirection(FunctionalDirectionDto functionalDirectionDto, Long id);
 }

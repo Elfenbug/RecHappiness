@@ -19,6 +19,5 @@ import java.util.Set;
 public class TechnologyDto {
     private Long id;
     private String name;
-    private Set<ProjectDto> projects;
 
 }

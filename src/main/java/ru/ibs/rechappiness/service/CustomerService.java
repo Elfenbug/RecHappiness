@@ -1,18 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.CustomerDto;
 
 import java.util.List;
 
 public interface CustomerService {
 
-    Customer getCustomer(Long id);
+    CustomerDto getCustomer(Long id);
 
-    void saveCustomer(Customer customer);
+    void saveCustomer(CustomerDto customerDto);
 
     void deleteCustomer(Long id);
 
-    List<Customer> getAllCustomers();
+    List<CustomerDto> getAllCustomers();
 
-    void updateCustomer(Customer customer, Long id);
+    void updateCustomer(CustomerDto customerDto, Long id);
 }

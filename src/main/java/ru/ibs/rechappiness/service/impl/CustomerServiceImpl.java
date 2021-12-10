@@ -2,10 +2,13 @@ package ru.ibs.rechappiness.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.ibs.rechappiness.dto.CustomerDto;
+import ru.ibs.rechappiness.mapper.CustomerMapper;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.repository.CustomerRepository;
 import ru.ibs.rechappiness.service.CustomerService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,21 +22,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
+    public List<CustomerDto> getAllCustomers() {
         log.info("IN CustomerServiceImpl getAllCustomers");
-        return customerRepository.findAll();
+        List<CustomerDto> customerDtoList = new ArrayList<>();
+        List<Customer> customerList = customerRepository.findAll();
+        for (Customer customers : customerList) {
+            customerDtoList.add(CustomerMapper.INSTANCE.fromCustomer(customers));
+        }
+        return customerDtoList;
     }
 
     @Override
-    public Customer getCustomer(Long id) {
+    public CustomerDto getCustomer(Long id) {
         log.info("IN CustomerServiceImpl getCustomer {}", id);
-        return customerRepository.findById(id).orElse(null);
+        return CustomerMapper.INSTANCE.fromCustomer(customerRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveCustomer(Customer customer) {
-        log.info("IN CustomerServiceImpl saveCustomer {}", customer);
-        customerRepository.save(customer);
+    public void saveCustomer(CustomerDto customerDto) {
+        log.info("IN CustomerServiceImpl saveCustomer {}", customerDto);
+        customerRepository.save(CustomerMapper.INSTANCE.toCustomer(customerDto));
     }
 
     @Override
@@ -43,11 +51,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomer(Customer customer, Long id) {
-        log.info("IN CustomerServiceImpl updateCustomer {}", customer);
+    public void updateCustomer(CustomerDto customerDto, Long id) {
+        log.info("IN CustomerServiceImpl updateCustomer {}", customerDto);
         if (customerRepository.findById(id).orElse(null) != null) {
-            customer.setId(id);
-            customerRepository.save(customer);
+            customerDto.setId(id);
+            customerRepository.save(CustomerMapper.INSTANCE.toCustomer(customerDto));
         }
     }
 }

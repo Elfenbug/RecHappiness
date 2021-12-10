@@ -1,7 +1,7 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.CountryDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Country;
 import ru.ibs.rechappiness.model.Customer;
@@ -20,24 +20,23 @@ public class CountryController {
     }
 
     @GetMapping("/country/read")
-    public List<Country> showAllCountries() {
+    public List<CountryDto> showAllCountries() {
         return countryService.getAllCountries();
     }
 
     @GetMapping("/country/read/{id}")
-    public Country getCountry(@PathVariable Long id) {
+    public CountryDto getCountry(@PathVariable Long id) {
         return countryService.getCountry(id);
     }
 
     @PostMapping("/country/create")
-    public Country addNewCountry(@RequestBody Country country) {
-        countryService.saveCountry(country);
-        return country;
+    public void addNewCountry(@RequestBody CountryDto countryDto) {
+        countryService.saveCountry(countryDto);
     }
 
     @PostMapping("/country/update/{id}")
-    public void updateCountry(@RequestBody Country country, @PathVariable Long id) {
-        countryService.updateCountry(country, id);
+    public void updateCountry(@RequestBody CountryDto countryDto, @PathVariable Long id) {
+        countryService.updateCountry(countryDto, id);
     }
 
     @PostMapping("/country/update/")

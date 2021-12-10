@@ -1,17 +1,17 @@
 package ru.ibs.rechappiness.mapper;
 
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import ru.ibs.rechappiness.dto.StreetDto;
 import ru.ibs.rechappiness.model.Street;
 
-import java.util.List;
-
 @Mapper
 public interface StreetMapper {
     StreetMapper INSTANCE = Mappers.getMapper(StreetMapper.class);
 
-    StreetDto toDto(Street street);
+    Street toStreet(StreetDto streetDto);
 
-    List<StreetDto> map(List<Street> streets);
+    @InheritInverseConfiguration
+    StreetDto fromStreet(Street street);
 }

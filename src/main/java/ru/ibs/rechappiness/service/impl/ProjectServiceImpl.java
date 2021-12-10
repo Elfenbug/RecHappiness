@@ -36,20 +36,18 @@ public class ProjectServiceImpl implements ProjectService {
             projectDtoList.add(ProjectMapper.INSTANCE.fromProject(projects));
         }
         return projectDtoList;
-
-        //return projectRepository.findAll();
     }
 
     @Override
-    public Project getProject(Long id) {
+    public ProjectDto getProject(Long id) {
         log.info("IN ProjectServiceImpl getProject {}", id);
-        return projectRepository.findById(id).orElse(null);
+        return ProjectMapper.INSTANCE.fromProject(projectRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveProject(Project project) {
-        log.info("IN ProjectServiceImpl saveProject {}", project);
-        projectRepository.save(project);
+    public void saveProject(ProjectDto projectDto) {
+        log.info("IN ProjectServiceImpl saveProject {}", projectDto);
+        projectRepository.save(ProjectMapper.INSTANCE.toProject(projectDto));
     }
 
     @Override
@@ -59,13 +57,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateProject(Project project, Long id) {
-        log.info("IN CustomerServiceImpl updateProject {}", project);
+    public void updateProject(ProjectDto projectDto, Long id) {
+        log.info("IN CustomerServiceImpl updateProject {}", projectDto);
         if (projectRepository.findById(id).orElse(null) != null) {
-            project.setId(id);
-            projectRepository.save(project);
+            projectDto.setId(id);
+            projectRepository.save(ProjectMapper.INSTANCE.toProject(projectDto));
         }
     }
-
-
 }

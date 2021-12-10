@@ -3,8 +3,6 @@ package ru.ibs.rechappiness.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.CustomerDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.mapper.CustomerMapper;
-import ru.ibs.rechappiness.mapper.LocationMapper;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.service.CustomerService;
 
@@ -22,23 +20,22 @@ public class CustomerController {
 
     @GetMapping("/customer/read")
     public List<CustomerDto> showAllCustomers() {
-        return CustomerMapper.INSTANCE.map(customerService.getAllCustomers());
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("/customer/read/{id}")
     public CustomerDto getCustomer(@PathVariable Long id) {
-        return CustomerMapper.INSTANCE.toDto(customerService.getCustomer(id));
+        return customerService.getCustomer(id);
     }
 
     @PostMapping("/customer/create")
-    public Customer addNewCustomer(@RequestBody Customer customer) {
-        customerService.saveCustomer(customer);
-        return customer;
+    public void addNewCustomer(@RequestBody CustomerDto customerDto) {
+        customerService.saveCustomer(customerDto);
     }
 
     @PostMapping("/customer/update/{id}")
-    public void updateCustomer(@RequestBody Customer customer, @PathVariable Long id) {
-        customerService.updateCustomer(customer, id);
+    public void updateCustomer(@RequestBody CustomerDto customerDto, @PathVariable Long id) {
+        customerService.updateCustomer(customerDto, id);
     }
 
     @PostMapping("/customer/update/")

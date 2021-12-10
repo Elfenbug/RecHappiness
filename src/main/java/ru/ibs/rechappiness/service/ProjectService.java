@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface ProjectService {
 
-    Project getProject(Long id);
+    ProjectDto getProject(Long id);
 
-    void saveProject(Project project);
+    void saveProject(ProjectDto project);
 
     void deleteProject(Long id);
 
     List<ProjectDto> getAllProjects();
 
-    void updateProject(Project project, Long id);
+    void updateProject(ProjectDto projectDto, Long id);
 
 }

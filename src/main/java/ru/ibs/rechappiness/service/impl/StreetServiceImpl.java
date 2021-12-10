@@ -1,13 +1,14 @@
 package ru.ibs.rechappiness.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.StreetDto;
+import ru.ibs.rechappiness.mapper.StreetMapper;
 import ru.ibs.rechappiness.model.Street;
 import ru.ibs.rechappiness.repository.StreetRepository;
 import ru.ibs.rechappiness.service.StreetService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,23 +21,27 @@ public class StreetServiceImpl implements StreetService {
         this.streetRepository = streetRepository;
     }
 
-
     @Override
-    public List<Street> getAllStreets() {
+    public List<StreetDto> getAllStreets() {
         log.info("IN StreetServiceImpl getAllStreets");
-        return streetRepository.findAll();
+        List<StreetDto> streetDtoList = new ArrayList<>();
+        List<Street> streetList = streetRepository.findAll();
+        for (Street streets : streetList) {
+            streetDtoList.add(StreetMapper.INSTANCE.fromStreet(streets));
+        }
+        return streetDtoList;
     }
 
     @Override
-    public Street getStreet(Long id) {
+    public StreetDto getStreet(Long id) {
         log.info("IN StreetServiceImpl getStreet {}", id);
-        return streetRepository.findById(id).orElse(null);
+        return StreetMapper.INSTANCE.fromStreet(streetRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveStreet(Street street) {
-        log.info("IN StreetServiceImpl saveStreet {}", street);
-        streetRepository.save(street);
+    public void saveStreet(StreetDto streetDto) {
+        log.info("IN StreetServiceImpl saveStreet {}", streetDto);
+        streetRepository.save(StreetMapper.INSTANCE.toStreet(streetDto));
     }
 
     @Override
@@ -46,11 +51,11 @@ public class StreetServiceImpl implements StreetService {
     }
 
     @Override
-    public void updateStreet(Street street, Long id) {
-        log.info("IN StreetServiceImpl updateStreet {}", street);
+    public void updateStreet(StreetDto streetDto, Long id) {
+        log.info("IN StreetServiceImpl updateStreet {}", streetDto);
         if (streetRepository.findById(id).orElse(null) != null) {
-            street.setId(id);
-            streetRepository.save(street);
+            streetDto.setId(id);
+            streetRepository.save(StreetMapper.INSTANCE.toStreet(streetDto));
         }
     }
 }

@@ -1,14 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.CityDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.mapper.CityMapper;
-import ru.ibs.rechappiness.mapper.LocationMapper;
 import ru.ibs.rechappiness.model.City;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.service.CityService;
 
 import java.util.List;
@@ -25,23 +20,22 @@ public class CityController {
 
     @GetMapping("/city/read")
     public List<CityDto> showAllCities() {
-        return CityMapper.INSTANCE.map(cityService.getAllCities());
+        return cityService.getAllCities();
     }
 
     @GetMapping("/city/read/{id}")
     public CityDto getCity(@PathVariable Long id) {
-        return CityMapper.INSTANCE.toDto(cityService.getCity(id));
+        return cityService.getCity(id);
     }
 
     @PostMapping("/city/create")
-    public City addNewCity(@RequestBody City city) {
-        cityService.saveCity(city);
-        return city;
+    public void addNewCity(@RequestBody CityDto cityDto) {
+        cityService.saveCity(cityDto);
     }
 
     @PostMapping("/city/update/{id}")
-    public void updateCity(@RequestBody City city, @PathVariable Long id) {
-        cityService.updateCity(city, id);
+    public void updateCity(@RequestBody CityDto cityDto, @PathVariable Long id) {
+        cityService.updateCity(cityDto, id);
     }
 
     @PostMapping("/city/update/")

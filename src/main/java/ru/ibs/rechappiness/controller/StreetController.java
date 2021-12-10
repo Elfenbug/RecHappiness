@@ -3,7 +3,6 @@ package ru.ibs.rechappiness.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.StreetDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.mapper.StreetMapper;
 import ru.ibs.rechappiness.model.Street;
 import ru.ibs.rechappiness.service.StreetService;
 
@@ -21,23 +20,22 @@ public class StreetController {
 
     @GetMapping("/street/read")
     public List<StreetDto> showAllStreets() {
-        return StreetMapper.INSTANCE.map(streetService.getAllStreets());
+        return streetService.getAllStreets();
     }
 
     @GetMapping("/street/read/{id}")
     public StreetDto getById(@PathVariable Long id) {
-        return StreetMapper.INSTANCE.toDto(streetService.getStreet(id));
+        return streetService.getStreet(id);
     }
 
     @PostMapping("/street/create")
-    public Street addNewStreet(@RequestBody Street street) {
-        streetService.saveStreet(street);
-        return street;
+    public void addNewStreet(@RequestBody StreetDto streetDto) {
+        streetService.saveStreet(streetDto);
     }
 
     @PostMapping("/street/update/{id}")
-    public void updateStreet(@RequestBody Street street, @PathVariable Long id) {
-        streetService.updateStreet(street, id);
+    public void updateStreet(@RequestBody StreetDto streetDto, @PathVariable Long id) {
+        streetService.updateStreet(streetDto, id);
     }
 
     @PostMapping("/street/update/")

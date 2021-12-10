@@ -3,15 +3,13 @@ package ru.ibs.rechappiness.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.ProjectDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.mapper.LocationMapper;
-import ru.ibs.rechappiness.mapper.ProjectMapper;
 import ru.ibs.rechappiness.model.Project;
 import ru.ibs.rechappiness.service.ProjectService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/registers")
+@RequestMapping("/api")
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -27,18 +25,17 @@ public class ProjectController {
 
     @GetMapping("/project/read/{id}")
     public ProjectDto getProject(@PathVariable Long id) {
-        return ProjectMapper.INSTANCE.fromProject(projectService.getProject(id));
+        return projectService.getProject(id);
     }
 
     @PostMapping("/project/create")
-    public Project addNewProject(@RequestBody Project project) {
-        projectService.saveProject(project);
-        return project;
+    public void addNewProject(@RequestBody ProjectDto projectDto) {
+        projectService.saveProject(projectDto);
     }
 
     @PostMapping("/project/update/{id}")
-    public void updateProject(@RequestBody Project project, @PathVariable Long id) {
-        projectService.updateProject(project, id);
+    public void updateProject(@RequestBody ProjectDto projectDto, @PathVariable Long id) {
+        projectService.updateProject(projectDto, id);
     }
 
     @PostMapping("/project/update/")
