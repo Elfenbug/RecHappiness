@@ -1,10 +1,8 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.TechnologyDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Technology;
 import ru.ibs.rechappiness.service.TechnologyService;
 
@@ -13,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/registers")
 public class TechnologyController {
-
     private final TechnologyService technologyService;
 
     public TechnologyController(TechnologyService technologyService) {
@@ -25,19 +22,18 @@ public class TechnologyController {
     }
 
     @GetMapping("/technology/read/{id}")
-    public Technology getTechnology(@PathVariable Long id) {
+    public TechnologyDto getTechnology(@PathVariable Long id) {
         return technologyService.getTechnology(id);
     }
 
     @PostMapping("/technology/create")
-    public Technology addNewTechnology(@RequestBody Technology technology) {
-        technologyService.saveTechnology(technology);
-        return technology;
+    public void addNewTechnology(@RequestBody TechnologyDto technologyDto) {
+        technologyService.saveTechnology(technologyDto);
     }
 
     @PostMapping("/technology/update/{id}")
-    public void updateTechnology(@RequestBody Technology technology, @PathVariable Long id) {
-        technologyService.updateTechnology(technology, id);
+    public void updateTechnology(@RequestBody TechnologyDto technologyDto, @PathVariable Long id) {
+        technologyService.updateTechnology(technologyDto, id);
     }
 
     @PostMapping("/technology/update/")

@@ -30,19 +30,18 @@ public class TechnologyServiceImpl implements TechnologyService {
             technologyDtoList.add(TechnologyMapper.INSTANCE.fromTechnology(technologies));
         }
         return technologyDtoList;
-        //       return technologyRepository.findAll();
     }
 
     @Override
-    public Technology getTechnology(Long id) {
+    public TechnologyDto getTechnology(Long id) {
         log.info("IN TechnologyServiceImpl getTechnology {}", id);
-        return technologyRepository.findById(id).orElse(null);
+        return TechnologyMapper.INSTANCE.fromTechnology(technologyRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveTechnology(Technology technology) {
-        log.info("IN TechnologyServiceImpl saveTechnology {}", technology);
-        technologyRepository.save(technology);
+    public void saveTechnology(TechnologyDto technologyDto) {
+        log.info("IN TechnologyServiceImpl saveTechnology {}", technologyDto);
+        technologyRepository.save(TechnologyMapper.INSTANCE.toTechnology(technologyDto));
     }
 
     @Override
@@ -52,11 +51,11 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public void updateTechnology(Technology technology, Long id) {
-        log.info("IN TechnologyServiceImpl updateTechnology {}", technology);
+    public void updateTechnology(TechnologyDto technologyDto, Long id) {
+        log.info("IN TechnologyServiceImpl updateTechnology {}", technologyDto);
         if (technologyRepository.findById(id).orElse(null) != null) {
-            technology.setId(id);
-            technologyRepository.save(technology);
+            technologyDto.setId(id);
+            technologyRepository.save(TechnologyMapper.INSTANCE.toTechnology(technologyDto));
         }
     }
 }

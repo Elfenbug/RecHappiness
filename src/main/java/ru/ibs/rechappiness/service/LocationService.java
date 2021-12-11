@@ -1,19 +1,17 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.Location;
+import ru.ibs.rechappiness.dto.LocationDto;
 
 import java.util.List;
 
 public interface LocationService {
+    LocationDto getLocation(Long id);
 
-    Location getLocation(Long id);
-
-    void saveLocation(Location location);
+    void saveLocation(LocationDto locationDto);
 
     void deleteLocation(Long id);
 
-    List<Location> getAllLocations();
+    List<LocationDto> getAllLocations();
 
-    void updateLocation(Location location, Long id);
+    void updateLocation(LocationDto locationDto, Long id);
 }

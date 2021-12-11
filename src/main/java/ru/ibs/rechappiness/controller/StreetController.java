@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/registers")
 public class StreetController {
-
     private final StreetService streetService;
 
     public StreetController(StreetService streetService) {

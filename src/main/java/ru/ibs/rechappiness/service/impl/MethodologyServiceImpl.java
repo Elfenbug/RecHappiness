@@ -2,10 +2,13 @@ package ru.ibs.rechappiness.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.ibs.rechappiness.dto.MethodologyDto;
+import ru.ibs.rechappiness.mapper.MethodologyMapper;
 import ru.ibs.rechappiness.model.Methodology;
 import ru.ibs.rechappiness.repository.MethodologyRepository;
 import ru.ibs.rechappiness.service.MethodologyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,21 +22,26 @@ public class MethodologyServiceImpl implements MethodologyService {
     }
 
     @Override
-    public List<Methodology> getAllMethodologies() {
+    public List<MethodologyDto> getAllMethodologies() {
         log.info("IN MethodologyServiceImpl getAllMethodologies");
-        return methodologyRepository.findAll();
+        List<MethodologyDto> methodologyDtoList = new ArrayList<>();
+        List<Methodology> methodologyList = methodologyRepository.findAll();
+        for (Methodology methodologies : methodologyList) {
+            methodologyDtoList.add(MethodologyMapper.INSTANCE.fromMethodology(methodologies));
+        }
+        return methodologyDtoList;
     }
 
     @Override
-    public Methodology getMethodology(Long id) {
+    public MethodologyDto getMethodology(Long id) {
         log.info("IN MethodologyServiceImpl getMethodology {}", id);
-        return methodologyRepository.findById(id).orElse(null);
+        return MethodologyMapper.INSTANCE.fromMethodology(methodologyRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveMethodology(Methodology methodology) {
-        log.info("IN MethodologyServiceImpl saveMethodology {}", methodology);
-        methodologyRepository.save(methodology);
+    public void saveMethodology(MethodologyDto methodologyDto) {
+        log.info("IN MethodologyServiceImpl saveMethodology {}", methodologyDto);
+        methodologyRepository.save(MethodologyMapper.INSTANCE.toMethodology(methodologyDto));
     }
 
     @Override
@@ -43,11 +51,11 @@ public class MethodologyServiceImpl implements MethodologyService {
     }
 
     @Override
-    public void updateMethodology(Methodology methodology, Long id) {
-        log.info("IN MethodologyServiceImpl updateMethodology {}", methodology);
+    public void updateMethodology(MethodologyDto methodologyDto, Long id) {
+        log.info("IN MethodologyServiceImpl updateMethodology {}", methodologyDto);
         if (methodologyRepository.findById(id).orElse(null) != null) {
-            methodology.setId(id);
-            methodologyRepository.save(methodology);
+            methodologyDto.setId(id);
+            methodologyRepository.save(MethodologyMapper.INSTANCE.toMethodology(methodologyDto));
         }
     }
 }

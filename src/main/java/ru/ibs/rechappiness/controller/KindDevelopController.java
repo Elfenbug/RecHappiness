@@ -1,9 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.KindDevelopDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.KindDevelop;
 import ru.ibs.rechappiness.service.KindDevelopService;
 
 import java.util.List;
@@ -19,24 +19,23 @@ public class KindDevelopController {
     }
 
     @GetMapping("/kinddevelop/read")
-    public List<KindDevelop> showAllKindDevelops() {
+    public List<KindDevelopDto> showAllKindDevelops() {
         return kindDevelopService.getAllKindDevelops();
     }
 
     @GetMapping("/kinddevelop/read/{id}")
-    public KindDevelop getKindDevelop(@PathVariable Long id) {
+    public KindDevelopDto getKindDevelop(@PathVariable Long id) {
         return kindDevelopService.getKindDevelop(id);
     }
 
     @PostMapping("/kinddevelop/create")
-    public KindDevelop addNewKindDevelop(@RequestBody KindDevelop kindDevelop) {
-        kindDevelopService.saveKindDevelop(kindDevelop);
-        return kindDevelop;
+    public void addNewKindDevelop(@RequestBody KindDevelopDto kindDevelopDto) {
+        kindDevelopService.saveKindDevelop(kindDevelopDto);
     }
 
     @PostMapping("/kinddevelop/update/{id}")
-    public void updateKindDevelop(@RequestBody KindDevelop kindDevelop, @PathVariable Long id) {
-        kindDevelopService.updateKindDevelop(kindDevelop, id);
+    public void updateKindDevelop(@RequestBody KindDevelopDto kindDevelopDto, @PathVariable Long id) {
+        kindDevelopService.updateKindDevelop(kindDevelopDto, id);
     }
 
     @PostMapping("/kinddevelop/update/")

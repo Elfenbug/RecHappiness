@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.SubjectArea;
+import ru.ibs.rechappiness.dto.SubjectAreaDto;
 
 import java.util.List;
 
 public interface SubjectAreaService {
-    SubjectArea getSubjectArea(Long id);
+    SubjectAreaDto getSubjectArea(Long id);
 
-    void saveSubjectArea(SubjectArea subjectArea);
+    void saveSubjectArea(SubjectAreaDto subjectAreaDto);
 
     void deleteSubjectArea(Long id);
 
-    List<SubjectArea> getAllSubjectAreas();
+    List<SubjectAreaDto> getAllSubjectAreas();
 
-    void updateSubjectArea(SubjectArea subjectArea, Long id);
+    void updateSubjectArea(SubjectAreaDto subjectAreaDto, Long id);
 
 }

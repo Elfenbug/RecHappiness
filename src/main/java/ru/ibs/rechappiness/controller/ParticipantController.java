@@ -1,9 +1,8 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.ParticipantDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Participant;
 import ru.ibs.rechappiness.service.ParticipantService;
 
@@ -20,24 +19,23 @@ public class ParticipantController {
     }
 
     @GetMapping("/participant/read")
-    public List<Participant> showAllParticipants() {
+    public List<ParticipantDto> showAllParticipants() {
         return participantService.getAllParticipants();
     }
 
     @GetMapping("/participant/read/{id}")
-    public Participant getParticipant(@PathVariable Long id) {
+    public ParticipantDto getParticipant(@PathVariable Long id) {
         return participantService.getParticipant(id);
     }
 
     @PostMapping("/participant/create")
-    public Participant addNewParticipant(@RequestBody Participant participant) {
-        participantService.saveParticipant(participant);
-        return participant;
+    public void addNewParticipant(@RequestBody ParticipantDto participantDto) {
+        participantService.saveParticipant(participantDto);
     }
 
     @PostMapping("/participant/update/{id}")
-    public void updateParticipant(@RequestBody Participant participant, @PathVariable Long id) {
-        participantService.updateParticipant(participant, id);
+    public void updateParticipant(@RequestBody ParticipantDto participantDto, @PathVariable Long id) {
+        participantService.updateParticipant(participantDto, id);
     }
 
     @PostMapping("/participant/update/")

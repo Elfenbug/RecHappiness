@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 @Slf4j
 public class StreetServiceImpl implements StreetService {
-
     private final StreetRepository streetRepository;
 
     public StreetServiceImpl(StreetRepository streetRepository) {

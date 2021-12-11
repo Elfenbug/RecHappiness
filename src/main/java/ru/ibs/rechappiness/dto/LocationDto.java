@@ -3,7 +3,6 @@ package ru.ibs.rechappiness.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.ibs.rechappiness.model.Project;
 
 @Data
 @AllArgsConstructor

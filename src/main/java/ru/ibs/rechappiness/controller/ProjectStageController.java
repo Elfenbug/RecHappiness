@@ -1,11 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.ProjectStageDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.ProjectStage;
-import ru.ibs.rechappiness.service.ProjectService;
 import ru.ibs.rechappiness.service.ProjectStageService;
 
 import java.util.List;
@@ -21,24 +19,23 @@ public class ProjectStageController {
     }
 
     @GetMapping("/projectstage/read")
-    public List<ProjectStage> showAllProjectStages() {
+    public List<ProjectStageDto> showAllProjectStages() {
         return projectStageService.getAllProjectStages();
     }
 
     @GetMapping("/projectstage/read/{id}")
-    public ProjectStage getProjectStage(@PathVariable Long id) {
+    public ProjectStageDto getProjectStage(@PathVariable Long id) {
         return projectStageService.getProjectStage(id);
     }
 
     @PostMapping("/projectstage/create")
-    public ProjectStage addNewProjectStage(@RequestBody ProjectStage projectStage) {
-        projectStageService.saveProjectStage(projectStage);
-        return projectStage;
+    public void addNewProjectStage(@RequestBody ProjectStageDto projectStageDto) {
+        projectStageService.saveProjectStage(projectStageDto);
     }
 
     @PostMapping("/projectstage/update/{id}")
-    public void updateProjectStage(@RequestBody ProjectStage projectStage, @PathVariable Long id) {
-        projectStageService.updateProjectStage(projectStage, id);
+    public void updateProjectStage(@RequestBody ProjectStageDto projectStageDto, @PathVariable Long id) {
+        projectStageService.updateProjectStage(projectStageDto, id);
     }
 
     @PostMapping("/projectstage/update/")

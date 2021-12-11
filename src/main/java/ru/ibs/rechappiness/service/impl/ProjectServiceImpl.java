@@ -3,12 +3,8 @@ package ru.ibs.rechappiness.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.ibs.rechappiness.dto.ProjectDto;
-import ru.ibs.rechappiness.dto.TechnologyDto;
 import ru.ibs.rechappiness.mapper.ProjectMapper;
-import ru.ibs.rechappiness.mapper.TechnologyMapper;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Project;
-import ru.ibs.rechappiness.model.Technology;
 import ru.ibs.rechappiness.repository.ProjectRepository;
 import ru.ibs.rechappiness.service.ProjectService;
 

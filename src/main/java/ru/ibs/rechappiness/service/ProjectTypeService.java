@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.ProjectType;
+import ru.ibs.rechappiness.dto.ProjectTypeDto;
 
 import java.util.List;
 
 public interface ProjectTypeService {
 
-    ProjectType getProjectType(Long id);
+    ProjectTypeDto getProjectType(Long id);
 
-    void saveProjectType(ProjectType ProjectType);
+    void saveProjectType(ProjectTypeDto projectTypeDto);
 
     void deleteProjectType(Long id);
 
-    List<ProjectType> getAllProjectTypes();
+    List<ProjectTypeDto> getAllProjectTypes();
 
-    void updateProjectType(ProjectType projectType, Long id);
+    void updateProjectType(ProjectTypeDto projectTypeDto, Long id);
 }

@@ -1,14 +1,14 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.SubjectAreaDto;
+import ru.ibs.rechappiness.mapper.SubjectAreaMapper;
 import ru.ibs.rechappiness.model.SubjectArea;
 import ru.ibs.rechappiness.repository.SubjectAreaRepository;
 import ru.ibs.rechappiness.service.SubjectAreaService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,21 +22,26 @@ public class SubjectAreaServiceImpl implements SubjectAreaService {
     }
 
     @Override
-    public List<SubjectArea> getAllSubjectAreas() {
+    public List<SubjectAreaDto> getAllSubjectAreas() {
         log.info("IN CustomerServiceImpl getAllCustomers");
-        return subjectAreaRepository.findAll();
+        List<SubjectAreaDto> subjectAreaDtoList = new ArrayList<>();
+        List<SubjectArea> subjectAreaList = subjectAreaRepository.findAll();
+        for (SubjectArea subjectAreas : subjectAreaList) {
+            subjectAreaDtoList.add(SubjectAreaMapper.INSTANCE.fromSubjectArea(subjectAreas));
+        }
+        return subjectAreaDtoList;
     }
 
     @Override
-    public SubjectArea getSubjectArea(Long id) {
+    public SubjectAreaDto getSubjectArea(Long id) {
         log.info("IN CustomerServiceImpl getCustomer {}", id);
-        return subjectAreaRepository.findById(id).orElse(null);
+        return SubjectAreaMapper.INSTANCE.fromSubjectArea(subjectAreaRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveSubjectArea(SubjectArea subjectArea) {
-        log.info("IN CustomerServiceImpl saveCustomer {}", subjectArea);
-        subjectAreaRepository.save(subjectArea);
+    public void saveSubjectArea(SubjectAreaDto subjectAreaDto) {
+        log.info("IN CustomerServiceImpl saveCustomer {}", subjectAreaDto);
+        subjectAreaRepository.save(SubjectAreaMapper.INSTANCE.toSubjectArea(subjectAreaDto));
     }
 
     @Override
@@ -46,11 +51,11 @@ public class SubjectAreaServiceImpl implements SubjectAreaService {
     }
 
     @Override
-    public void updateSubjectArea(SubjectArea subjectArea, Long id) {
-        log.info("IN CustomerServiceImpl updateCustomer {}", subjectArea);
+    public void updateSubjectArea(SubjectAreaDto subjectAreaDto, Long id) {
+        log.info("IN CustomerServiceImpl updateCustomer {}", subjectAreaDto);
         if (subjectAreaRepository.findById(id).orElse(null) != null) {
-            subjectArea.setId(id);
-            subjectAreaRepository.save(subjectArea);
+            subjectAreaDto.setId(id);
+            subjectAreaRepository.save(SubjectAreaMapper.INSTANCE.toSubjectArea(subjectAreaDto));
         }
     }
 }

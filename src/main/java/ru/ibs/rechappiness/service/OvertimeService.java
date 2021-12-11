@@ -1,18 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Overtime;
+import ru.ibs.rechappiness.dto.OvertimeDto;
 
 import java.util.List;
 
 public interface OvertimeService {
 
-    Overtime getOvertime(Long id);
+    OvertimeDto getOvertime(Long id);
 
-    void saveOvertime(Overtime overtime);
+    void saveOvertime(OvertimeDto overtimeDto);
 
     void deleteOvertime(Long id);
 
-    List<Overtime> getAllOvertimes();
+    List<OvertimeDto> getAllOvertimes();
 
-    void updateOvertime(Overtime overtime, Long id);
+    void updateOvertime(OvertimeDto overtimeDto, Long id);
 }

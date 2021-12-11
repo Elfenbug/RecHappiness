@@ -1,14 +1,14 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.KindDevelopDto;
+import ru.ibs.rechappiness.mapper.KindDevelopMapper;
 import ru.ibs.rechappiness.model.KindDevelop;
 import ru.ibs.rechappiness.repository.KindDevelopRepository;
 import ru.ibs.rechappiness.service.KindDevelopService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,21 +22,26 @@ public class KindDevelopServiceImpl implements KindDevelopService {
     }
 
     @Override
-    public List<KindDevelop> getAllKindDevelops() {
+    public List<KindDevelopDto> getAllKindDevelops() {
         log.info("IN KindDeveloperServiceImpl getAllKindDevelops");
-        return kindDevelopRepository.findAll();
+        List<KindDevelopDto> kindDevelopDtoList = new ArrayList<>();
+        List<KindDevelop> streetList = kindDevelopRepository.findAll();
+        for (KindDevelop kindDevelops : streetList) {
+            kindDevelopDtoList.add(KindDevelopMapper.INSTANCE.fromKindDevelop(kindDevelops));
+        }
+        return kindDevelopDtoList;
     }
 
     @Override
-    public KindDevelop getKindDevelop(Long id) {
+    public KindDevelopDto getKindDevelop(Long id) {
         log.info("IN KindDeveloperServiceImpl getKindDevelop {}", id);
-        return kindDevelopRepository.findById(id).orElse(null);
+        return KindDevelopMapper.INSTANCE.fromKindDevelop(kindDevelopRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveKindDevelop(KindDevelop kindDevelop) {
-        log.info("IN KindDeveloperServiceImpl saveKindDevelop {}", kindDevelop);
-        kindDevelopRepository.save(kindDevelop);
+    public void saveKindDevelop(KindDevelopDto kindDevelopDto) {
+        log.info("IN KindDeveloperServiceImpl saveKindDevelop {}", kindDevelopDto);
+        kindDevelopRepository.save(KindDevelopMapper.INSTANCE.toKindDevelop(kindDevelopDto));
     }
 
     @Override
@@ -46,11 +51,11 @@ public class KindDevelopServiceImpl implements KindDevelopService {
     }
 
     @Override
-    public void updateKindDevelop(KindDevelop kindDevelop, Long id) {
-        log.info("IN KindDeveloperServiceImpl updateKindDevelop {}", kindDevelop);
+    public void updateKindDevelop(KindDevelopDto kindDevelopDto, Long id) {
+        log.info("IN KindDeveloperServiceImpl updateKindDevelop {}", kindDevelopDto);
         if (kindDevelopRepository.findById(id).orElse(null) != null) {
-            kindDevelop.setId(id);
-            kindDevelopRepository.save(kindDevelop);
+            kindDevelopDto.setId(id);
+            kindDevelopRepository.save(KindDevelopMapper.INSTANCE.toKindDevelop(kindDevelopDto));
         }
     }
 }

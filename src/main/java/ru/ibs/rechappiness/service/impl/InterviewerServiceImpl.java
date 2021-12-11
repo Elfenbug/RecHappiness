@@ -1,14 +1,14 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.InterviewerDto;
+import ru.ibs.rechappiness.mapper.InterviewerMapper;
 import ru.ibs.rechappiness.model.Interviewer;
 import ru.ibs.rechappiness.repository.InterviewerRepository;
 import ru.ibs.rechappiness.service.InterviewerService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,21 +22,26 @@ public class InterviewerServiceImpl implements InterviewerService {
     }
 
     @Override
-    public List<Interviewer> getAllInterviewers() {
+    public List<InterviewerDto> getAllInterviewers() {
         log.info("IN InterviewerServiceImpl getAllInterviewers");
-        return interviewerRepository.findAll();
+        List<InterviewerDto> interviewerDtoList = new ArrayList<>();
+        List<Interviewer> interviewerList = interviewerRepository.findAll();
+        for (Interviewer interviewers : interviewerList) {
+            interviewerDtoList.add(InterviewerMapper.INSTANCE.fromInterviewer(interviewers));
+        }
+        return interviewerDtoList;
     }
 
     @Override
-    public Interviewer getInterviewer(Long id) {
+    public InterviewerDto getInterviewer(Long id) {
         log.info("IN InterviewerServiceImpl getInterviewer {}", id);
-        return interviewerRepository.findById(id).orElse(null);
+        return InterviewerMapper.INSTANCE.fromInterviewer(interviewerRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveInterviewer(Interviewer interviewer) {
-        log.info("IN InterviewerServiceImpl saveInterviewer {}", interviewer);
-        interviewerRepository.save(interviewer);
+    public void saveInterviewer(InterviewerDto interviewerDto) {
+        log.info("IN InterviewerServiceImpl saveInterviewer {}", interviewerDto);
+        interviewerRepository.save(InterviewerMapper.INSTANCE.toInterviewer(interviewerDto));
     }
 
     @Override
@@ -46,11 +51,11 @@ public class InterviewerServiceImpl implements InterviewerService {
     }
 
     @Override
-    public void updateInterviewer(Interviewer interviewer, Long id) {
-        log.info("IN InterviewerServiceImpl updateInterviewer {}", interviewer);
+    public void updateInterviewer(InterviewerDto interviewerDto, Long id) {
+        log.info("IN InterviewerServiceImpl updateInterviewer {}", interviewerDto);
         if (interviewerRepository.findById(id).orElse(null) != null) {
-            interviewer.setId(id);
-            interviewerRepository.save(interviewer);
+            interviewerDto.setId(id);
+            interviewerRepository.save(InterviewerMapper.INSTANCE.toInterviewer(interviewerDto));
         }
     }
 

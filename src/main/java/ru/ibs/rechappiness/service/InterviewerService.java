@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.Interviewer;
+import ru.ibs.rechappiness.dto.InterviewerDto;
 
 import java.util.List;
 
 public interface InterviewerService {
 
-    Interviewer getInterviewer(Long id);
+    InterviewerDto getInterviewer(Long id);
 
-    void saveInterviewer(Interviewer interviewer);
+    void saveInterviewer(InterviewerDto interviewerDto);
 
     void deleteInterviewer(Long id);
 
-    List<Interviewer> getAllInterviewers();
+    List<InterviewerDto> getAllInterviewers();
 
-    void updateInterviewer(Interviewer interviewer, Long id);
+    void updateInterviewer(InterviewerDto interviewerDto, Long id);
 }

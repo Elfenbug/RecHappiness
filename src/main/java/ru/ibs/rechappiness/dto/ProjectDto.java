@@ -1,10 +1,8 @@
 package ru.ibs.rechappiness.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -16,8 +14,8 @@ import java.util.Set;
 public class ProjectDto {
     private Long id;
     private String name;
+    private CustomerDto customer;
     private String deadline;
-    //private Date deadline;
     private int stakeholder;
     private String description;
     private int countDeveloper;
@@ -27,10 +25,7 @@ public class ProjectDto {
     private boolean checkReady;
     private String teamDate;
     private boolean checkDocumentation;
-//    private boolean gost;
     private String projectTask;
-
-//    private CustomerDto customer;
     private FunctionalDirectionDto functionalDirection;
     private SubjectAreaDto subjectArea;
     private ProjectStageDto projectStage;

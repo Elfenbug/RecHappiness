@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.Participant;
+import ru.ibs.rechappiness.dto.ParticipantDto;
 
 import java.util.List;
 
 public interface ParticipantService {
 
-    Participant getParticipant(Long id);
+    ParticipantDto getParticipant(Long id);
 
-    void saveParticipant(Participant participant);
+    void saveParticipant(ParticipantDto participantDto);
 
     void deleteParticipant(Long id);
 
-    List<Participant> getAllParticipants();
+    List<ParticipantDto> getAllParticipants();
 
-    void updateParticipant(Participant participant, Long id);
+    void updateParticipant(ParticipantDto participantDto, Long id);
 }

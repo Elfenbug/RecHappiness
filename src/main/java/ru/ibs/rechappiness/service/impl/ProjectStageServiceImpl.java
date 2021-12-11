@@ -1,22 +1,19 @@
 package ru.ibs.rechappiness.service.impl;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.ibs.rechappiness.model.Customer;
+import ru.ibs.rechappiness.dto.ProjectStageDto;
+import ru.ibs.rechappiness.mapper.ProjectStageMapper;
 import ru.ibs.rechappiness.model.ProjectStage;
-import ru.ibs.rechappiness.repository.ProjectRepository;
 import ru.ibs.rechappiness.repository.ProjectStageRepository;
-import ru.ibs.rechappiness.service.ProjectService;
 import ru.ibs.rechappiness.service.ProjectStageService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
 public class ProjectStageServiceImpl implements ProjectStageService {
-
     private final ProjectStageRepository projectStageRepository;
 
     public ProjectStageServiceImpl(ProjectStageRepository projectStageRepository) {
@@ -24,21 +21,26 @@ public class ProjectStageServiceImpl implements ProjectStageService {
     }
 
     @Override
-    public List<ProjectStage> getAllProjectStages() {
+    public List<ProjectStageDto> getAllProjectStages() {
         log.info("IN ProjectStageServiceImpl getAllProjectStages");
-        return projectStageRepository.findAll();
+        List<ProjectStageDto> projectStageDtoList = new ArrayList<>();
+        List<ProjectStage> projectStageList = projectStageRepository.findAll();
+        for (ProjectStage projectStages : projectStageList) {
+            projectStageDtoList.add(ProjectStageMapper.INSTANCE.fromProjectStage(projectStages));
+        }
+        return projectStageDtoList;
     }
 
     @Override
-    public ProjectStage getProjectStage(Long id) {
+    public ProjectStageDto getProjectStage(Long id) {
         log.info("IN ProjectStageServiceImpl getProjectStageService {}", id);
-        return projectStageRepository.findById(id).orElse(null);
+        return ProjectStageMapper.INSTANCE.fromProjectStage(projectStageRepository.findById(id).orElse(null));
     }
 
     @Override
-    public void saveProjectStage(ProjectStage projectStage) {
-        log.info("IN ProjectStageServiceImpl saveProjectStage {}", projectStage);
-        projectStageRepository.save(projectStage);
+    public void saveProjectStage(ProjectStageDto projectStageDto) {
+        log.info("IN ProjectStageServiceImpl saveProjectStage {}", projectStageDto);
+        projectStageRepository.save(ProjectStageMapper.INSTANCE.toProjectStage(projectStageDto));
     }
 
     @Override
@@ -48,11 +50,11 @@ public class ProjectStageServiceImpl implements ProjectStageService {
     }
 
     @Override
-    public void updateProjectStage(ProjectStage projectStage, Long id) {
-        log.info("IN ProjectStageServiceImpl updateProjectStage {}", projectStage);
+    public void updateProjectStage(ProjectStageDto projectStageDto, Long id) {
+        log.info("IN ProjectStageServiceImpl updateProjectStage {}", projectStageDto);
         if (projectStageRepository.findById(id).orElse(null) != null) {
-            projectStage.setId(id);
-            projectStageRepository.save(projectStage);
+            projectStageDto.setId(id);
+            projectStageRepository.save(ProjectStageMapper.INSTANCE.toProjectStage(projectStageDto));
         }
     }
 }

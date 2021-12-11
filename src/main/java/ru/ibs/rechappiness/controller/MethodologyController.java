@@ -1,6 +1,7 @@
 package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.MethodologyDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Methodology;
 import ru.ibs.rechappiness.service.MethodologyService;
@@ -18,24 +19,23 @@ public class MethodologyController {
     }
 
     @GetMapping("/methodology/read")
-    public List<Methodology> showAllMethodologies() {
+    public List<MethodologyDto> showAllMethodologies() {
         return methodologyService.getAllMethodologies();
     }
 
     @GetMapping("/methodology/read/{id}")
-    public Methodology getMethodology(@PathVariable Long id) {
+    public MethodologyDto getMethodology(@PathVariable Long id) {
         return methodologyService.getMethodology(id);
     }
 
     @PostMapping("/methodology/create")
-    public Methodology addNewMethodology(@RequestBody Methodology methodology) {
-        methodologyService.saveMethodology(methodology);
-        return methodology;
+    public void addNewMethodology(@RequestBody MethodologyDto methodologyDto) {
+        methodologyService.saveMethodology(methodologyDto);
     }
 
     @PostMapping("/methodology/update/{id}")
-    public void updateMethodology(@RequestBody Methodology methodology, @PathVariable Long id) {
-        methodologyService.updateMethodology(methodology, id);
+    public void updateMethodology(@RequestBody MethodologyDto methodologyDto, @PathVariable Long id) {
+        methodologyService.updateMethodology(methodologyDto, id);
     }
 
     @PostMapping("/methodology/update/")

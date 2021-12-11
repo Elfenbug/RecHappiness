@@ -1,19 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.ProjectStage;
+import ru.ibs.rechappiness.dto.ProjectStageDto;
 
 import java.util.List;
 
 public interface ProjectStageService {
 
-    ProjectStage getProjectStage(Long id);
+    ProjectStageDto getProjectStage(Long id);
 
-    void saveProjectStage(ProjectStage projectStage);
+    void saveProjectStage(ProjectStageDto projectStageDto);
 
     void deleteProjectStage(Long id);
 
-    List<ProjectStage> getAllProjectStages();
+    List<ProjectStageDto> getAllProjectStages();
 
-    void updateProjectStage(ProjectStage projectStage, Long id);
+    void updateProjectStage(ProjectStageDto projectStageDto, Long id);
 }

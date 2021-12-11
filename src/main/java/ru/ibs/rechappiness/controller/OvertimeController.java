@@ -1,9 +1,8 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.OvertimeDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Overtime;
 import ru.ibs.rechappiness.service.OvertimeService;
 
@@ -20,24 +19,23 @@ public class OvertimeController {
     }
 
     @GetMapping("/overtime/read")
-    public List<Overtime> showAllOvertimes() {
+    public List<OvertimeDto> showAllOvertimes() {
         return overtimeService.getAllOvertimes();
     }
 
     @GetMapping("/overtime/read/{id}")
-    public Overtime getOvertime(@PathVariable Long id) {
+    public OvertimeDto getOvertime(@PathVariable Long id) {
         return overtimeService.getOvertime(id);
     }
 
     @PostMapping("/overtime/create")
-    public Overtime addNewOvertime(@RequestBody Overtime overtime) {
-        overtimeService.saveOvertime(overtime);
-        return overtime;
+    public void addNewOvertime(@RequestBody OvertimeDto overtimeDto) {
+        overtimeService.saveOvertime(overtimeDto);
     }
 
     @PostMapping("/overtime/update/{id}")
-    public void updateOvertime(@RequestBody Overtime overtime, @PathVariable Long id) {
-        overtimeService.updateOvertime(overtime, id);
+    public void updateOvertime(@RequestBody OvertimeDto overtimeDto, @PathVariable Long id) {
+        overtimeService.updateOvertime(overtimeDto, id);
     }
 
     @PostMapping("/overtime/update/")

@@ -1,18 +1,18 @@
 package ru.ibs.rechappiness.service;
 
-import ru.ibs.rechappiness.model.KindDevelop;
+import ru.ibs.rechappiness.dto.KindDevelopDto;
 
 import java.util.List;
 
 public interface KindDevelopService {
 
-    KindDevelop getKindDevelop(Long id);
+    KindDevelopDto getKindDevelop(Long id);
 
-    void saveKindDevelop(KindDevelop kindDevelop);
+    void saveKindDevelop(KindDevelopDto kindDevelopDto);
 
     void deleteKindDevelop(Long id);
 
-    List<KindDevelop> getAllKindDevelops();
+    List<KindDevelopDto> getAllKindDevelops();
 
-    void updateKindDevelop(KindDevelop kindDevelop, Long id);
+    void updateKindDevelop(KindDevelopDto kindDevelopDto, Long id);
 }

@@ -1,10 +1,8 @@
 package ru.ibs.rechappiness.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.InterviewerDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Interviewer;
 import ru.ibs.rechappiness.service.InterviewerService;
 
@@ -21,24 +19,23 @@ public class InterviewerController {
     }
 
     @GetMapping("/interviewer/read")
-    public List<Interviewer> showAllInterviewers() {
+    public List<InterviewerDto> showAllInterviewers() {
         return interviewerService.getAllInterviewers();
     }
 
     @GetMapping("/interviewer/read/{id}")
-    public Interviewer getInterviewer(@PathVariable Long id) {
+    public InterviewerDto getInterviewer(@PathVariable Long id) {
         return interviewerService.getInterviewer(id);
     }
 
     @PostMapping("/interviewer/create")
-    public Interviewer addNewInterviewer(@RequestBody Interviewer interviewer) {
-        interviewerService.saveInterviewer(interviewer);
-        return interviewer;
+    public void addNewInterviewer(@RequestBody InterviewerDto interviewerDto) {
+        interviewerService.saveInterviewer(interviewerDto);
     }
 
     @PostMapping("/interviewer/update/{id}")
-    public void updateInterviewer(@RequestBody Interviewer interviewer, @PathVariable Long id) {
-        interviewerService.updateInterviewer(interviewer, id);
+    public void updateInterviewer(@RequestBody InterviewerDto interviewerDto, @PathVariable Long id) {
+        interviewerService.updateInterviewer(interviewerDto, id);
     }
 
     @PostMapping("/interviewer/update/")

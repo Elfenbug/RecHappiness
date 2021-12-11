@@ -1,10 +1,9 @@
 package ru.ibs.rechappiness.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.ibs.rechappiness.dto.ProjectTypeDto;
 import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
 import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.ProjectType;
 import ru.ibs.rechappiness.service.ProjectTypeService;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/registers")
 public class ProjectTypeController {
-
     private final ProjectTypeService projectTypeService;
 
     public ProjectTypeController(ProjectTypeService projectTypeService) {
@@ -20,24 +18,23 @@ public class ProjectTypeController {
     }
 
     @GetMapping("/projecttype/read")
-    public List<ProjectType> showAllProjectTypes() {
+    public List<ProjectTypeDto> showAllProjectTypes() {
         return projectTypeService.getAllProjectTypes();
     }
 
     @GetMapping("/projecttype/read/{id}")
-    public ProjectType getProjectType(@PathVariable Long id) {
+    public ProjectTypeDto getProjectType(@PathVariable Long id) {
         return projectTypeService.getProjectType(id);
     }
 
     @PostMapping("/projecttype/create")
-    public ProjectType addNewProjectType(@RequestBody ProjectType projectType) {
-        projectTypeService.saveProjectType(projectType);
-        return projectType;
+    public void addNewProjectType(@RequestBody ProjectTypeDto projectTypeDto) {
+        projectTypeService.saveProjectType(projectTypeDto);
     }
 
     @PostMapping("/projecttype/update/{id}")
-    public void updateProjectType(@RequestBody ProjectType projectType, @PathVariable Long id) {
-        projectTypeService.updateProjectType(projectType, id);
+    public void updateProjectType(@RequestBody ProjectTypeDto projectTypeDto, @PathVariable Long id) {
+        projectTypeService.updateProjectType(projectTypeDto, id);
     }
 
     @PostMapping("/projecttype/update/")

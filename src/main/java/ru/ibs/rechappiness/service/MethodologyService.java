@@ -1,5 +1,6 @@
 package ru.ibs.rechappiness.service;
 
+import ru.ibs.rechappiness.dto.MethodologyDto;
 import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.model.Methodology;
 
@@ -7,13 +8,13 @@ import java.util.List;
 
 public interface MethodologyService {
 
-    Methodology getMethodology(Long id);
+    MethodologyDto getMethodology(Long id);
 
-    void saveMethodology(Methodology methodology);
+    void saveMethodology(MethodologyDto methodologyDto);
 
     void deleteMethodology(Long id);
 
-    List<Methodology> getAllMethodologies();
+    List<MethodologyDto> getAllMethodologies();
 
-    void updateMethodology(Methodology methodology, Long id);
+    void updateMethodology(MethodologyDto methodologyDto, Long id);
 }

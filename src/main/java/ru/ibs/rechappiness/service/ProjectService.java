@@ -1,8 +1,6 @@
 package ru.ibs.rechappiness.service;
 
 import ru.ibs.rechappiness.dto.ProjectDto;
-import ru.ibs.rechappiness.model.Customer;
-import ru.ibs.rechappiness.model.Project;
 
 import java.util.List;
 
