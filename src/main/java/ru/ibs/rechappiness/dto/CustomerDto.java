@@ -11,5 +11,4 @@ import java.util.List;
 public class CustomerDto {
         private Long id;
         private String name;
-        private List<Project> project;
 }

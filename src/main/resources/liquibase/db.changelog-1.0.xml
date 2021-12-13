@@ -299,11 +299,11 @@
                 <constraints nullable="true" unique="false"/>
             </column>
 
-            <column name="project_type_id" type="BIGINT">
+            <column name="project_types_id" type="BIGINT">
                 <constraints nullable="true" unique="false"/>
             </column>
 
-            <column name="kind_develop_id" type="BIGINT">
+            <column name="kind_develops_id" type="BIGINT">
                 <constraints nullable="true" unique="false"/>
             </column>
 
@@ -372,7 +372,7 @@
     </changeSet>
 
     <changeSet id="1.0.20" author="marsel.kashapov">
-        <addForeignKeyConstraint baseColumnNames="id"
+        <addForeignKeyConstraint baseColumnNames="project_stages_id"
                                  baseTableName="projects"
                                  constraintName="fk_projects_project_stages"
                                  onDelete="CASCADE"
@@ -392,7 +392,7 @@
     </changeSet>
 
     <changeSet id="1.0.22" author="marsel.kashapov">
-        <addForeignKeyConstraint baseColumnNames="id"
+        <addForeignKeyConstraint baseColumnNames="project_types_id"
                                  baseTableName="projects"
                                  constraintName="fk_projects_project_types"
                                  onDelete="CASCADE"
@@ -402,7 +402,7 @@
     </changeSet>
 
     <changeSet id="1.0.23" author="marsel.kashapov">
-        <addForeignKeyConstraint baseColumnNames="id"
+        <addForeignKeyConstraint baseColumnNames="kind_develops_id"
                                  baseTableName="projects"
                                  constraintName="fk_projects_kind_develops"
                                  onDelete="CASCADE"

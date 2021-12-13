@@ -21,10 +21,10 @@ public interface ProjectMapper {
 
     @InheritInverseConfiguration
     @Mappings({
-            @Mapping(target = "technologies", ignore = true),
             @Mapping(target = "deadline", source = "deadline",
                     dateFormat = "yyyy-MM-dd HH:mm:ss"),
             @Mapping(target = "teamDate", source = "teamDate",
                     dateFormat = "yyyy-MM-dd HH:mm:ss")})
+    @Mapping(target = "technologies", ignore = true)
     ProjectDto fromProject(Project project);
 }
