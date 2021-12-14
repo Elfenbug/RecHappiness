@@ -22,7 +22,7 @@ public class Methodology {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "methodology")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "methodology")
     @JsonIgnore
     private List<Project> projects;
 }
