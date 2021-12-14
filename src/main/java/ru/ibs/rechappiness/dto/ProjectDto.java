@@ -1,8 +1,11 @@
 package ru.ibs.rechappiness.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import javax.persistence.Column;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -26,7 +29,7 @@ public class ProjectDto {
     private String teamDate;
     private boolean checkDocumentation;
     private String projectTask;
-    private FunctionalDirectionDto functionalDirection;
+    private String functionalDirection;
     private SubjectAreaDto subjectArea;
     private ProjectStageDto projectStage;
     private ProjectTypeDto projectType;
@@ -35,4 +38,6 @@ public class ProjectDto {
     private Set<LocationDto> locations;
     private OvertimeDto overtime;
     private Set<TechnologyDto> technologies;
+//    private String created;
+//    private String updated;
 }

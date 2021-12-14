@@ -9,9 +9,12 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -33,15 +36,18 @@ public class Project {
 
     @Column(name = "deadline")
    // @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime deadline;
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate deadline;
 
     @Column(name = "stakeholders")
     private int stakeholder;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "functional_directions")
+    private String functionalDirection;
 
     @Column(name = "count_developers")
     private int countDeveloper;
@@ -60,9 +66,9 @@ public class Project {
 
     @Column(name = "team_date")
    // @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime teamDate;
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate teamDate;
 
     @Column(name = "check_documentation")
     private boolean checkDocumentation;
@@ -78,9 +84,9 @@ public class Project {
     //@JsonIgnore
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "functional_directions_id")
-    private FunctionalDirection functionalDirection;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "functional_directions_id")
+//    private FunctionalDirection functionalDirection;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_areas_id")
@@ -120,6 +126,26 @@ public class Project {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name="users_id")
     private Users user;
+
+//    @Column(name = "created")
+//    @CreatedDate
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    private LocalDate created;
+//
+//    @Column(name = "updated")
+//    @LastModifiedDate
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    private LocalDate updated;
+
+//    @PrePersist
+//    public void doCreateDate() {
+//        setCreated(LocalDate.now());
+//    }
+//
+//    @PreUpdate
+//    public void doUpdateDate() {
+//        setUpdated(LocalDate.now());
+//    }
 
 
 

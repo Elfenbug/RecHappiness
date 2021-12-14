@@ -128,17 +128,17 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="1.0.8" author="marsel.kashapov">
-        <createTable tableName="functional_directions">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
+<!--    <changeSet id="1.0.8" author="marsel.kashapov">-->
+<!--        <createTable tableName="functional_directions">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
 
-            <column name="name" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-        </createTable>
-    </changeSet>
+<!--            <column name="name" type="VARCHAR(100)">-->
+<!--                <constraints nullable="false" unique="true"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
 
     <changeSet id="1.0.9" author="marsel.kashapov">
         <createTable tableName="project_stages">
@@ -255,7 +255,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
 
-            <column name="deadline" type="TIMESTAMP">
+            <column name="deadline" type="DATE">
                 <constraints nullable="false" unique="false"/>
             </column>
 
@@ -287,7 +287,7 @@
                 <constraints nullable="false" unique="false"/>
             </column>
 
-            <column name="team_date" type="TIMESTAMP">
+            <column name="team_date" type="DATE">
                 <constraints nullable="false" unique="false"/>
             </column>
 
@@ -319,7 +319,7 @@
                 <constraints nullable="false" unique="false"/>
             </column>
 
-            <column name="functional_directions_id" type="BIGINT">
+            <column name="functional_directions" type="TEXT">
                 <constraints nullable="true" unique="false"/>
             </column>
 
@@ -338,6 +338,15 @@
             <column name="overtimes_id" type="BIGINT">
                 <constraints nullable="true" unique="false"/>
             </column>
+
+<!--            <column name="created" type="DATE" defaultValue="CURRENT_TIMESTAMP()">-->
+<!--                <constraints nullable="false" unique="false"/>-->
+<!--            </column>-->
+
+<!--            <column name="updated" type="DATE" defaultValue="CURRENT_TIMESTAMP()">-->
+<!--                <constraints nullable="false" unique="false"/>-->
+<!--            </column>-->
+
         </createTable>
     </changeSet>
 
@@ -361,15 +370,15 @@
                                  referencedTableName="customers"/>
     </changeSet>
 
-    <changeSet id="1.0.19" author="marsel.kashapov">
-        <addForeignKeyConstraint baseColumnNames="functional_directions_id"
-                                 baseTableName="projects"
-                                 constraintName="fk_projects_functional_directions"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="functional_directions"/>
-    </changeSet>
+<!--    <changeSet id="1.0.19" author="marsel.kashapov">-->
+<!--        <addForeignKeyConstraint baseColumnNames="functional_directions_id"-->
+<!--                                 baseTableName="projects"-->
+<!--                                 constraintName="fk_projects_functional_directions"-->
+<!--                                 onDelete="CASCADE"-->
+<!--                                 onUpdate="RESTRICT"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="functional_directions"/>-->
+<!--    </changeSet>-->
 
     <changeSet id="1.0.20" author="marsel.kashapov">
         <addForeignKeyConstraint baseColumnNames="project_stages_id"
@@ -511,4 +520,74 @@
                                  referencedColumnNames="id"
                                  referencedTableName="methodologies"/>
     </changeSet>
+
+    <changeSet id="1.0.34" author="marsel.kashapov">
+        <insert tableName="customers">
+            <column name="name" value="IBS"/>
+        </insert>
+
+        <insert tableName="customers">
+            <column name="name" value="Рога и копыта"/>
+        </insert>
+
+        <insert tableName="kind_develops">
+            <column name="name" value="Type_1"/>
+        </insert>
+
+        <insert tableName="kind_develops">
+            <column name="name" value="Type_2"/>
+        </insert>
+
+        <insert tableName="methodologies">
+            <column name="name" value="Agile"/>
+        </insert>
+
+        <insert tableName="methodologies">
+            <column name="name" value="Scrum"/>
+        </insert>
+
+        <insert tableName="overtimes">
+            <column name="name" value="Нет"/>
+        </insert>
+
+        <insert tableName="project_stages">
+            <column name="name" value="Инициация"/>
+        </insert>
+
+        <insert tableName="project_stages">
+            <column name="name" value="Начало"/>
+        </insert>
+
+        <insert tableName="project_types">
+            <column name="name" value="Фикс"/>
+        </insert>
+
+        <insert tableName="project_types">
+            <column name="name" value="MVP"/>
+        </insert>
+
+        <insert tableName="technologies">
+            <column name="name" value="SQL"/>
+        </insert>
+
+        <insert tableName="technologies">
+            <column name="name" value="Java"/>
+        </insert>
+
+        <insert tableName="technologies">
+            <column name="name" value="React"/>
+        </insert>
+
+        <insert tableName="subject_areas">
+            <column name="name" value="subject_type_1"/>
+        </insert>
+
+        <insert tableName="subject_areas">
+            <column name="name" value="subject_type_2"/>
+        </insert>
+
+
+
+    </changeSet>
+
 </databaseChangeLog>

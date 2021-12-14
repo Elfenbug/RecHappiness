@@ -12,19 +12,19 @@ import ru.ibs.rechappiness.model.Project;
 public interface ProjectMapper {
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
 
-    @Mappings({
-            @Mapping(target = "deadline", source = "deadline",
-                    dateFormat = "yyyy-MM-dd HH:mm:ss"),
-            @Mapping(target = "teamDate", source = "teamDate",
-                    dateFormat = "yyyy-MM-dd HH:mm:ss")})
+    @Mapping(target = "deadline", source = "deadline",
+            dateFormat = "yyyy-MM-dd")
+    @Mapping(target = "teamDate", source = "teamDate",
+            dateFormat = "yyyy-MM-dd")
+//    @Mapping(target = "created", ignore = true)
+//    @Mapping(target = "updated", ignore = true)
     Project toProject(ProjectDto projectDto);
 
     @InheritInverseConfiguration
-    @Mappings({
-            @Mapping(target = "deadline", source = "deadline",
-                    dateFormat = "yyyy-MM-dd HH:mm:ss"),
-            @Mapping(target = "teamDate", source = "teamDate",
-                    dateFormat = "yyyy-MM-dd HH:mm:ss")})
+    @Mapping(target = "deadline", source = "deadline",
+            dateFormat = "yyyy-MM-dd")
+    @Mapping(target = "teamDate", source = "teamDate",
+            dateFormat = "yyyy-MM-dd")
     @Mapping(target = "technologies", ignore = true)
     ProjectDto fromProject(Project project);
 }
