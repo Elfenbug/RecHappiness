@@ -127,28 +127,23 @@ public class Project {
     @JoinColumn(name="users_id")
     private Users user;
 
-//    @Column(name = "created")
-//    @CreatedDate
-//    @JsonFormat(pattern="yyyy-MM-dd")
-//    private LocalDate created;
-//
-//    @Column(name = "updated")
-//    @LastModifiedDate
-//    @JsonFormat(pattern="yyyy-MM-dd")
-//    private LocalDate updated;
+    @Column(name = "created")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate created;
 
-//    @PrePersist
-//    public void doCreateDate() {
-//        setCreated(LocalDate.now());
-//    }
-//
-//    @PreUpdate
-//    public void doUpdateDate() {
-//        setUpdated(LocalDate.now());
-//    }
+    @Column(name = "updated")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate updated;
 
+    @PrePersist
+    public void doCreateDate() {
+        setCreated(LocalDate.now());
+    }
 
-
+    @PreUpdate
+    public void doUpdateDate() {
+        setUpdated(LocalDate.now());
+    }
 
 
     //    @ManyToMany(fetch = FetchType.EAGER)

@@ -38,6 +38,6 @@ public class ProjectDto {
     private Set<LocationDto> locations;
     private OvertimeDto overtime;
     private Set<TechnologyDto> technologies;
-//    private String created;
-//    private String updated;
+    private String created;
+    private String updated;
 }

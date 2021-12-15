@@ -16,8 +16,8 @@ public interface ProjectMapper {
             dateFormat = "yyyy-MM-dd")
     @Mapping(target = "teamDate", source = "teamDate",
             dateFormat = "yyyy-MM-dd")
-//    @Mapping(target = "created", ignore = true)
-//    @Mapping(target = "updated", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "updated", ignore = true)
     Project toProject(ProjectDto projectDto);
 
     @InheritInverseConfiguration

@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.ibs</groupId>
     <artifactId>RecHappiness</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>RecHappiness</name>
     <description>RecHappiness</description>
     <properties>
