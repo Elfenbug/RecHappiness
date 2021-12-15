@@ -340,11 +340,11 @@
             </column>
 
             <column name="created" type="DATE" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
             <column name="updated" type="DATE" defaultValue="CURRENT_TIMESTAMP()">
-                <constraints nullable="false" unique="false"/>
+                <constraints nullable="true" unique="false"/>
             </column>
 
         </createTable>

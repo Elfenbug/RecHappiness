@@ -9,13 +9,10 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -35,7 +32,7 @@ public class Project {
     private String name;
 
     @Column(name = "deadline")
-   // @JsonFormat(pattern="yyyy-MM-dd")
+    // @JsonFormat(pattern="yyyy-MM-dd")
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
@@ -65,7 +62,7 @@ public class Project {
     private boolean checkReady;
 
     @Column(name = "team_date")
-   // @JsonFormat(pattern="yyyy-MM-dd")
+    // @JsonFormat(pattern="yyyy-MM-dd")
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate teamDate;
@@ -76,7 +73,7 @@ public class Project {
 //    @Column(name = "gost")
 //    private boolean gost;
 
-    @Column(name="project_task")
+    @Column(name = "project_task")
     private String projectTask;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -124,26 +121,37 @@ public class Project {
     private Set<Technology> technologies;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name="users_id")
+    @JoinColumn(name = "users_id")
     private Users user;
 
+//    @Column(name = "created")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private LocalDate created;
+//
+//    @Column(name = "updated")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private LocalDate updated;
+//
+//    @PrePersist
+//    public void doCreateDate() {
+//        setCreated(LocalDate.now());
+//    }
+//
+//    @PreUpdate
+//    public void doUpdateDate() {
+//        setUpdated(LocalDate.now());
+//    }
+
     @Column(name = "created")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate created;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date created = new Date();
 
     @Column(name = "updated")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate updated;
-
-    @PrePersist
-    public void doCreateDate() {
-        setCreated(LocalDate.now());
-    }
-
-    @PreUpdate
-    public void doUpdateDate() {
-        setUpdated(LocalDate.now());
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    //@Version
+    private Date updated;
 
 
     //    @ManyToMany(fetch = FetchType.EAGER)
