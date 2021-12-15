@@ -148,7 +148,7 @@ public class Project {
     private Date created = new Date();
 
     @Column(name = "updated")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd")
     //@Version
     private Date updated;
