@@ -32,7 +32,7 @@ public class ProjectDto {
     private String functionalDirection;
     private SubjectAreaDto subjectArea;
     private ProjectStageDto projectStage;
-    private ProjectTypeDto projectType;
+//    private ProjectTypeDto projectType;
     private MethodologyDto methodology;
     private KindDevelopDto kindDevelop;
     private Set<LocationDto> locations;
@@ -44,4 +44,8 @@ public class ProjectDto {
     private String updated;
     private boolean isDraft;
     private boolean isArchive;
+    private String fixOrTandM;
+    private String pOorPak;
+    private String mvpOrNot;
+    private String zeroOrModern;
 }

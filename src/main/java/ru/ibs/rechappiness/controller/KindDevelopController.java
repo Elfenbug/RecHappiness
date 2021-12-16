@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.KindDevelopDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.service.KindDevelopService;
 
 import java.util.List;
@@ -38,19 +36,9 @@ public class KindDevelopController {
         kindDevelopService.updateKindDevelop(kindDevelopDto, id);
     }
 
-    @PostMapping("/kinddevelop/update/")
-    public Customer updateKindDevelop() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/kinddevelop/delete/{id}")
     public String deleteKindDevelop(@PathVariable Long id) {
         kindDevelopService.deleteKindDevelop(id);
         return "kindDevelop with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/kinddevelop/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

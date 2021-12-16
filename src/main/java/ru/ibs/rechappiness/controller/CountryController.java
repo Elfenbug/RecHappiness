@@ -2,9 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.CountryDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Country;
-import ru.ibs.rechappiness.model.Customer;
 import ru.ibs.rechappiness.service.CountryService;
 
 import java.util.List;
@@ -39,19 +36,9 @@ public class CountryController {
         countryService.updateCountry(countryDto, id);
     }
 
-    @PostMapping("/country/update/")
-    public Customer updateCustomer() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/country/delete/{id}")
     public String deleteCountry(@PathVariable Long id) {
         countryService.deleteCountry(id);
         return "country with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/country/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

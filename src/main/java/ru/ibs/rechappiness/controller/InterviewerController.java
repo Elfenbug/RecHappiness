@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.InterviewerDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Interviewer;
 import ru.ibs.rechappiness.service.InterviewerService;
 
 import java.util.List;
@@ -38,19 +36,9 @@ public class InterviewerController {
         interviewerService.updateInterviewer(interviewerDto, id);
     }
 
-    @PostMapping("/interviewer/update/")
-    public Interviewer updateInterviewer() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/interviewer/delete/{id}")
     public String deleteInterviewer(@PathVariable Long id) {
         interviewerService.deleteInterviewer(id);
         return "interviewer with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/interviewer/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

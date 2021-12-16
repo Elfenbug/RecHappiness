@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.SubjectAreaDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.SubjectArea;
 import ru.ibs.rechappiness.service.SubjectAreaService;
 
 import java.util.List;
@@ -37,19 +35,9 @@ public class SubjectAreaController {
         subjectAreaService.updateSubjectArea(subjectAreaDto, id);
     }
 
-    @PostMapping("/subjectarea/update/")
-    public SubjectArea updateSubjectArea() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/subjectarea/delete/{id}")
     public String deleteSubjectArea(@PathVariable Long id) {
         subjectAreaService.deleteSubjectArea(id);
         return "SubjectArea with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/subjectarea/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.TechnologyDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Technology;
 import ru.ibs.rechappiness.service.TechnologyService;
 
 import java.util.List;
@@ -36,20 +34,9 @@ public class TechnologyController {
         technologyService.updateTechnology(technologyDto, id);
     }
 
-    @PostMapping("/technology/update/")
-    public Technology updateTechnology() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/technology/delete/{id}")
     public String deleteTechnology(@PathVariable Long id) {
         technologyService.deleteTechnology(id);
         return "Technology with ID = " + id + " was deleted";
     }
-
-    @PostMapping("/technology/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
-    }
-
 }

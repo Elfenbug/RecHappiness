@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.StreetDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Street;
 import ru.ibs.rechappiness.service.StreetService;
 
 import java.util.List;
@@ -37,19 +35,9 @@ public class StreetController {
         streetService.updateStreet(streetDto, id);
     }
 
-    @PostMapping("/street/update/")
-    public Street updateStreet() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/street/delete/{id}")
     public String deleteStreet(@PathVariable Long id) {
         streetService.deleteStreet(id);
         return "Street with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/street/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

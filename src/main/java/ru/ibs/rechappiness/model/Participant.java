@@ -20,11 +20,11 @@ public class Participant {
     @Column(name = "count_interview")
     private int countInterview;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "interviewer_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "interviewers_id")
     private Interviewer interviewer;
 }

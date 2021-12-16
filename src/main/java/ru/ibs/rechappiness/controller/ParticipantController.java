@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.ParticipantDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Participant;
 import ru.ibs.rechappiness.service.ParticipantService;
 
 import java.util.List;
@@ -38,19 +36,9 @@ public class ParticipantController {
         participantService.updateParticipant(participantDto, id);
     }
 
-    @PostMapping("/participant/update/")
-    public Participant updateParticipant() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/participant/delete/{id}")
     public String deleteParticipant(@PathVariable Long id) {
         participantService.deleteParticipant(id);
         return "Participant with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/participant/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

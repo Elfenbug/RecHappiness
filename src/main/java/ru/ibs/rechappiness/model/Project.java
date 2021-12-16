@@ -93,9 +93,9 @@ public class Project {
     @JoinColumn(name = "project_stages_id")
     private ProjectStage projectStage;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "project_types_id")
-    private ProjectType projectType;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "project_types_id")
+//    private ProjectType projectType;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "methodologies_id")
@@ -144,6 +144,18 @@ public class Project {
     @Column(name = "archive")
     private boolean isArchive;
 
+    @Column(name = "fix_or_t_and_m")
+    private String fixOrTandM;
+
+    @Column(name = "po_or_pak")
+    private String pOorPak;
+
+    @Column(name = "mvp_or_not")
+    private String mvpOrNot;
+
+    @Column(name = "zero_or_modern")
+    private String zeroOrModern;
+
     @PrePersist
     public void doCreateDate() {
         setCreated(LocalDate.now());
@@ -153,7 +165,6 @@ public class Project {
     public void doUpdateDate() {
         setUpdated(LocalDate.now());
     }
-
 
 
 //    @Column(name = "created")

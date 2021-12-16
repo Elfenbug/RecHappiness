@@ -70,8 +70,8 @@ class ProjectServiceImplTest {
     @Test
     void saveProject() {
         ProjectDto projectDto = new ProjectDto(1L, "name", new CustomerDto(), "2021-12-12", 1, "description", 1, 1, true, false, true, "2021-12-12", true,
-                "projectTask", "functionalDirection", new SubjectAreaDto(), new ProjectStageDto(), new ProjectTypeDto(), new MethodologyDto(),
-                new KindDevelopDto(), new HashSet<LocationDto>(), new OvertimeDto(), new HashSet<TechnologyDto>(), "schedule", "author", "2021-12-12", "2021-12-12", false, true);
+                "projectTask", "functionalDirection", new SubjectAreaDto(), new ProjectStageDto(), new MethodologyDto(),
+                new KindDevelopDto(), new HashSet<>(), new OvertimeDto(), new HashSet<>(), "schedule", "author", "2021-12-12", "2021-12-12", false, true, "fix", "po", "mvp", "zero");
         projectService.saveProject(projectDto);
         Project newProject = ProjectMapper.INSTANCE.toProject(projectDto);
         verify(projectRepository, times(1)).save(newProject);
@@ -80,8 +80,8 @@ class ProjectServiceImplTest {
     @Test
     void deleteProject() {
         Project project = new Project(1L, "name", LocalDate.now(), 1, "description", "functionalDirection", 2, 3, true, false, false, LocalDate.now(),
-                true, "projectTask", new Customer(), new SubjectArea(), new ProjectStage(), new ProjectType(), new Methodology(), new KindDevelop(),
-                new HashSet<Location>(), new Overtime(), new HashSet<Technology>(), new Users(), LocalDate.now(), LocalDate.now(), "schedule", "author", false, true);
+                true, "projectTask", new Customer(), new SubjectArea(), new ProjectStage(), new Methodology(), new KindDevelop(),
+                new HashSet<>(), new Overtime(), new HashSet<>(), new Users(), LocalDate.now(), LocalDate.now(), "schedule", "author", false, true, "fix", "po", "mvp", "zero");
         List<Project> projectList = new ArrayList<>();
         projectList.add(project);
         projectService.deleteProject(1L);
@@ -91,14 +91,14 @@ class ProjectServiceImplTest {
     @Test
     void updateProject() {
         ProjectDto projectDto = new ProjectDto(1L, "name", new CustomerDto(), "2021-12-12", 1, "description", 1, 1, true, false, true, "2021-12-12", true,
-                "projectTask", "functionalDirection", new SubjectAreaDto(), new ProjectStageDto(), new ProjectTypeDto(), new MethodologyDto(),
-                new KindDevelopDto(), new HashSet<LocationDto>(), new OvertimeDto(), new HashSet<TechnologyDto>(), "schedule", "author", "2021-12-12", "2021-12-12", false, true);
+                "projectTask", "functionalDirection", new SubjectAreaDto(), new ProjectStageDto(), new MethodologyDto(),
+                new KindDevelopDto(), new HashSet<>(), new OvertimeDto(), new HashSet<>(), "schedule", "author", "2021-12-12", "2021-12-12", false, true,"fix","po","mvp","zero");
 
         Project newProject = ProjectMapper.INSTANCE.toProject(projectDto);
 
         Project project = new Project(1L, "name", LocalDate.now(), 1, "description", "functionalDirection", 2, 3, true, false, false, LocalDate.now(),
-                true, "projectTask", new Customer(), new SubjectArea(), new ProjectStage(), new ProjectType(), new Methodology(), new KindDevelop(),
-                new HashSet<Location>(), new Overtime(), new HashSet<Technology>(), new Users(), LocalDate.now(), LocalDate.now(), "schedule", "author", false, true);
+                true, "projectTask", new Customer(), new SubjectArea(), new ProjectStage(), new Methodology(), new KindDevelop(),
+                new HashSet<>(), new Overtime(), new HashSet<>(), new Users(), LocalDate.now(), LocalDate.now(), "schedule", "author", false, true,"fix","po","mvp","zero");
 
         projectService.updateProject(projectDto, 1L);
 

@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.CityDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.City;
 import ru.ibs.rechappiness.service.CityService;
 
 import java.util.List;
@@ -38,20 +36,9 @@ public class CityController {
         cityService.updateCity(cityDto, id);
     }
 
-    @PostMapping("/city/update/")
-    public City updateCity() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/city/delete/{id}")
     public String deleteCity(@PathVariable Long id) {
         cityService.deleteCity(id);
         return "city with ID = " + id + " was deleted";
     }
-
-    @PostMapping("/city/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
-    }
-
 }

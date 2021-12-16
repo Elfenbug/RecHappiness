@@ -16,17 +16,17 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="1.0.1" author="marsel.kashapov">
-        <createTable tableName="project_types">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
+<!--    <changeSet id="1.0.1" author="marsel.kashapov">-->
+<!--        <createTable tableName="project_types">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
 
-            <column name="name" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-        </createTable>
-    </changeSet>
+<!--            <column name="name" type="VARCHAR(100)">-->
+<!--                <constraints nullable="false" unique="true"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
 
     <changeSet id="1.0.2" author="marsel.kashapov">
         <createTable tableName="kind_develops">
@@ -201,6 +201,10 @@
             <column name="interviewers_id" type="BIGINT">
                 <constraints nullable="false" unique="false"/>
             </column>
+
+            <column name="project_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -299,9 +303,9 @@
                 <constraints nullable="true" unique="false"/>
             </column>
 
-            <column name="project_types_id" type="BIGINT">
-                <constraints nullable="true" unique="false"/>
-            </column>
+<!--            <column name="project_types_id" type="BIGINT">-->
+<!--                <constraints nullable="true" unique="false"/>-->
+<!--            </column>-->
 
             <column name="kind_develops_id" type="BIGINT">
                 <constraints nullable="true" unique="false"/>
@@ -363,6 +367,22 @@
                 <constraints nullable="true" unique="false"/>
             </column>
 
+            <column name="fix_or_t_and_m" type="VARCHAR(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="po_or_pak" type="VARCHAR(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="mvp_or_not" type="VARCHAR(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
+            <column name="zero_or_modern" type="VARCHAR(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 
@@ -416,15 +436,15 @@
                                  referencedTableName="subject_areas"/>
     </changeSet>
 
-    <changeSet id="1.0.22" author="marsel.kashapov">
-        <addForeignKeyConstraint baseColumnNames="project_types_id"
-                                 baseTableName="projects"
-                                 constraintName="fk_projects_project_types"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="project_types"/>
-    </changeSet>
+<!--    <changeSet id="1.0.22" author="marsel.kashapov">-->
+<!--        <addForeignKeyConstraint baseColumnNames="project_types_id"-->
+<!--                                 baseTableName="projects"-->
+<!--                                 constraintName="fk_projects_project_types"-->
+<!--                                 onDelete="CASCADE"-->
+<!--                                 onUpdate="RESTRICT"-->
+<!--                                 referencedColumnNames="id"-->
+<!--                                 referencedTableName="project_types"/>-->
+<!--    </changeSet>-->
 
     <changeSet id="1.0.23" author="marsel.kashapov">
         <addForeignKeyConstraint baseColumnNames="kind_develops_id"
@@ -537,7 +557,29 @@
                                  referencedTableName="methodologies"/>
     </changeSet>
 
+    <changeSet id="1.0.37" author="marsel.kashapov">
+        <insert tableName="countries">
+            <column name="name" value="США"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.0.38" author="marsel.kashapov">
+    <insert tableName="interviewers">
+        <column name="first_name" value="Иван"/>
+        <column name="last_name" value="Иванов"/>
+        <column name="email" value="ivanov@ivan.com"/>
+    </insert>
+    </changeSet>
+
     <changeSet id="1.0.34" author="marsel.kashapov">
+        <insert tableName="cities">
+            <column name="name" value="Москва"/>
+        </insert>
+
+        <insert tableName="countries">
+            <column name="name" value="Россия"/>
+        </insert>
+
         <insert tableName="customers">
             <column name="name" value="IBS"/>
         </insert>
@@ -545,6 +587,8 @@
         <insert tableName="customers">
             <column name="name" value="Рога и копыта"/>
         </insert>
+
+
 
         <insert tableName="kind_develops">
             <column name="name" value="Type_1"/>
@@ -564,6 +608,14 @@
 
         <insert tableName="overtimes">
             <column name="name" value="Нет"/>
+            <column name="name" value="Постоянно"/>
+            <column name="name" value="Иногда"/>
+        </insert>
+
+        <insert tableName="participants">
+            <column name="count_interview" value="2"/>
+            <column name="project_id" value="1"/>
+            <column name="interviewers_id" value="1"/>
         </insert>
 
         <insert tableName="project_stages">
@@ -574,13 +626,13 @@
             <column name="name" value="Начало"/>
         </insert>
 
-        <insert tableName="project_types">
-            <column name="name" value="Фикс"/>
-        </insert>
+<!--        <insert tableName="project_types">-->
+<!--            <column name="name" value="Фикс"/>-->
+<!--        </insert>-->
 
-        <insert tableName="project_types">
-            <column name="name" value="MVP"/>
-        </insert>
+<!--        <insert tableName="project_types">-->
+<!--            <column name="name" value="MVP"/>-->
+<!--        </insert>-->
 
         <insert tableName="technologies">
             <column name="name" value="SQL"/>
@@ -602,7 +654,23 @@
             <column name="name" value="subject_type_2"/>
         </insert>
 
+        <insert tableName="streets">
+            <column name="name" value="Ленина"/>
+        </insert>
 
+        <insert tableName="subject_areas">
+            <column name="name" value="Финансы"/>
+        </insert>
+
+        <insert tableName="locations">
+            <column name="name" value="Рога и Копыта Ставрополь"/>
+            <column name="index" value="12345"/>
+            <column name="countries_id" value="1"/>
+            <column name="cities_id" value="1"/>
+            <column name="streets_id" value="1"/>
+            <column name="house_number" value="1"/>
+            <column name="flat" value="1"/>
+        </insert>
 
     </changeSet>
 

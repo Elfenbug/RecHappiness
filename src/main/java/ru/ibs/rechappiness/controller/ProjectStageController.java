@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.ProjectStageDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.ProjectStage;
 import ru.ibs.rechappiness.service.ProjectStageService;
 
 import java.util.List;
@@ -38,19 +36,9 @@ public class ProjectStageController {
         projectStageService.updateProjectStage(projectStageDto, id);
     }
 
-    @PostMapping("/projectstage/update/")
-    public ProjectStage updateProjectStage() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/projectstage/delete/{id}")
     public String deleteProjectStage(@PathVariable Long id) {
         projectStageService.deleteProjectStage(id);
         return "ProjectStage with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/projectstage/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

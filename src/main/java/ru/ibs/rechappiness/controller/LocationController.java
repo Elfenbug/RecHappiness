@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.LocationDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Location;
 import ru.ibs.rechappiness.service.LocationService;
 
 import java.util.List;
@@ -38,19 +36,9 @@ public class LocationController {
         locationService.updateLocation(locationDto, id);
     }
 
-    @PostMapping("/location/update/")
-    public Location updateLocation() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/location/delete/{id}")
     public String deleteLocation(@PathVariable Long id) {
         locationService.deleteLocation(id);
         return "location with ID = " + id + " was deleted";
-    }
-
-    @PostMapping("/location/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
     }
 }

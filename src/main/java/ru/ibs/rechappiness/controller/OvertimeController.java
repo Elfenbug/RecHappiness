@@ -2,8 +2,6 @@ package ru.ibs.rechappiness.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.rechappiness.dto.OvertimeDto;
-import ru.ibs.rechappiness.exception_handling.NoSuchElementException;
-import ru.ibs.rechappiness.model.Overtime;
 import ru.ibs.rechappiness.service.OvertimeService;
 
 import java.util.List;
@@ -38,20 +36,9 @@ public class OvertimeController {
         overtimeService.updateOvertime(overtimeDto, id);
     }
 
-    @PostMapping("/overtime/update/")
-    public Overtime updateOvertime() {
-        throw new NoSuchElementException("Please use valid id");
-    }
-
     @PostMapping("/overtime/delete/{id}")
     public String deleteOvertime(@PathVariable Long id) {
         overtimeService.deleteOvertime(id);
         return "overtime with ID = " + id + " was deleted";
     }
-
-    @PostMapping("/overtime/delete")
-    public String noIdToDelete() {
-        throw new NoSuchElementException("Please, select ID to delete");
-    }
-
 }
