@@ -347,6 +347,22 @@
                 <constraints nullable="true" unique="false"/>
             </column>
 
+            <column name="archive" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="draft" type="BOOLEAN">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="author" type="VARCHAR(50)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="schedule" type="VARCHAR(50)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 

@@ -5,4 +5,5 @@ import ru.ibs.rechappiness.model.Project;
 
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
+    Project findProjectById(Long id);
 }

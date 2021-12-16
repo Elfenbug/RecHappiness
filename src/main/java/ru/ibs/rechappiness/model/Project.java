@@ -124,34 +124,50 @@ public class Project {
     @JoinColumn(name = "users_id")
     private Users user;
 
-//    @Column(name = "created")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
-//    private LocalDate created;
-//
-//    @Column(name = "updated")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
-//    private LocalDate updated;
-//
-//    @PrePersist
-//    public void doCreateDate() {
-//        setCreated(LocalDate.now());
-//    }
-//
-//    @PreUpdate
-//    public void doUpdateDate() {
-//        setUpdated(LocalDate.now());
-//    }
-
     @Column(name = "created")
-    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date created = new Date();
+    private LocalDate created;
 
     @Column(name = "updated")
-    //@Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    //@Version
-    private Date updated;
+    private LocalDate updated;
+
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "schedule")
+    private String schedule;
+
+    @Column(name = "draft")
+    private boolean isDraft;
+
+    @Column(name = "archive")
+    private boolean isArchive;
+
+    @PrePersist
+    public void doCreateDate() {
+        setCreated(LocalDate.now());
+    }
+
+    @PreUpdate
+    public void doUpdateDate() {
+        setUpdated(LocalDate.now());
+    }
+
+
+
+//    @Column(name = "created")
+//    @Temporal(TemporalType.DATE)
+////    @JsonFormat(pattern = "yyyy-MM-dd")
+//    private LocalDate created = new LocalDate();
+//
+//    @Column(name = "updated")
+//    //@Temporal(TemporalType.TIMESTAMP)
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    //@Version
+//    private LocalDate updated;
+
+//    @Column(name=)
 
 
     //    @ManyToMany(fetch = FetchType.EAGER)
